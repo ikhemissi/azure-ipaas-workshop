@@ -40,6 +40,8 @@ During this workshop you will have the instructions to complete each steps. The 
 
 TODO: describe a business scenario around order processing
 
+TODO: schema drawio
+
 ## Tooling and services
 
 - **iPaaS services**: Enable seamless integration of applications and data across different environments.
@@ -111,7 +113,7 @@ Moreover, you some of the applications (e.g. Azure Functions) should also be dep
 You terminal should show green messages such as:
 ![azd up command](assets/intro/azdup.png)
 
-In the Azure portal, you should have a new usergroup with a lot of sub resources inside it.
+In the Azure portal, you should have a new resource group with a lot of sub resources inside it.
 
 ![resources generated](assets/intro/azportal.png)
 
@@ -1177,7 +1179,7 @@ We will now see how to test our API securized by the OAuth 2.0 standard
 
 > 🔴 The API Manager returns a 401 error. Indeed, it is now necessary to pass the token in order to be authorized to call the API.
 
-2. On PostMan, create a new request with the following information
+2. On Postman, create a new request with the following information
     - Method : POST
     - Url : `https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/token`
       **TBD : how we get the tenant ??**
