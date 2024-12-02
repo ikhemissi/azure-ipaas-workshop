@@ -38,18 +38,19 @@ During this workshop you will have the instructions to complete each steps. The 
 
 </div>
 
-TODO: describe a business scenario around order processing
+In this lab, you are going to reproduce a real life scenario from a e-commerce platforms, when orders are passed by customers and when you need to process them, ideally asynchronously. You are going to leverage some Azure Services tailored to simplify this integration.
 
-TODO: schema drawio
+TODO: mettre le schema drawio quand revu par Iheb
 
 ## Tooling and services
 
-- **iPaaS services**: Enable seamless integration of applications and data across different environments.
-  
-TODO, j'aime pas la description de Ipaas
-  
+- **Azure Logic Apps**: A cloud service that helps you automate workflows and integrate apps, data, and services.
+- **Azure Functions**: A serverless compute service that allows you to run event-driven code without managing infrastructure.
+- **Azure Service Bus**: A messaging service that enables reliable communication between distributed applications and services.
 - **azd** (Azure Developer CLI): `azd` is a command-line interface designed to simplify the deployment and management of applications on Azure. It provides a unified experience for developers to build, deploy, and monitor their applications using a set of easy-to-use commands. With `azd`, you can streamline your workflow, automate repetitive tasks, and ensure consistent deployments across different environments.
 - **GitHub Codespace**: GitHub Codespaces provides a cloud-based development environment that allows you to code, build, test, and collaborate from anywhere. It offers a fully configured development environment that can be accessed directly from your browser or through Visual Studio Code. With Codespaces, you can quickly spin up a development environment with all the necessary tools and dependencies, ensuring a consistent setup across your team.
+
+You will require a tool to send HTTP requests without coding such as [Postman](https://www.postman.com/), [Bruno](https://www.usebruno.com/) or [VSCode thunder](https://www.thunderclient.com/).
 
 ## Prepare your dev environment
 
@@ -759,14 +760,18 @@ You should see your transformed message in the `toprocess` container:
 
 In the previous lab, we have added orders to CosmosDB.
 In this lab, we will focus on processing and fetching these orders by implementing 2 workflows:
+
 - Processing orders asynchronously using Azure Functions and Service Bus
 - Fetching and serving order synchronously va HTTP using Azure Functions
 
-TODO DRAFT: Introduce Azure Functions and Service Bus in 1-line each.
+As a reminder, you are now going to use:
+
+- **Azure Functions**: A serverless compute service that allows you to run event-driven code without managing infrastructure.
+- **Azure Service Bus**: A messaging service that enables reliable communication between distributed applications and services.
 
 ## Queueing orders in Service Bus
 
-TODO DRAFT: describe the need for async operations and the resiliency we get with a message broker like Service Bus including operation retries.
+Asynchronous operations are **essential** in modern applications to ensure that tasks are processed without blocking the main execution flow, improving overall performance and user experience. A message broker like Azure Service Bus enhances resiliency by decoupling application components, allowing them to communicate reliably even if one component is temporarily unavailable. Service Bus supports operation retries, ensuring that messages are eventually processed even in the face of transient failures, thus maintaining the integrity and reliability of the system.
 
 The data processing function app (with a name starting with `func-proc-lab`) should already have 2 functions deployed `QueueOrders` and `ProcessOrders`.
 
@@ -997,21 +1002,21 @@ Once you have deployed your updated Function App, you need to test your new chan
 
 <summary> Toggle solution</summary>
 
-TODO: describe how to get the url of the function and how to call it
+Open the function in the Azure portal and click on `Get function URL`. A side panel should open.
+
+![Get function's URL](assets/lab2/getfunctionurl.png)
 
 </details>
 
 ## Summary
 
-TODO: describe what the attendee has learned in this lab sync and async flows with functions and service bus.
-
----
+In this lab, you learned how to process and fetch orders using Azure Functions and Service Bus. You implemented asynchronous order processing to improve performance and resiliency, leveraging Service Bus for reliable communication and automatic retries. Additionally, you created an HTTP endpoint to fetch the latest processed orders from CosmosDB, demonstrating how to build event-driven and API-based workflows with Azure services.
 
 # Lab 3 : Exposing and monetizing APIs (45m)
 
 For this Lab, we will focus on the following scope :
 
-![Process](assets/lab3/lab3-scope.jpg)
+![Global process](assets/lab3/lab3-scope.jpg)
 
 ## Expose an API (5 minutes)
 
@@ -1021,18 +1026,18 @@ In this first step, we will learn how to expose an API on Azure APIM. We will pu
 2. On the left pane click on `APIS`
 3. Then, click on `+ Add API` and on the group `Create from Azure resource` select the tile `Function App`
 
-    ![AddAPI](assets/lab3/part1-step3.jpg)
+    ![Add an API](assets/lab3/part1-step3.jpg)
 
 4. In the window that opens :
     - For the field `Function App`, click on `Browse`
     - Then on the windows that opens :
     - On _Configure required settings_, click on `Select` and choose your **Function App**
 
-        ![FunctionSettings](assets/lab3/part1-step4_2.jpg)
+        ![Function settings](assets/lab3/part1-step4_2.jpg)
 
     - Be sure the function `FetchOrders` is select and click on `Select`
 
-        ![FunctionSelection](assets/lab3/part1-step4_3.jpg)
+        ![Function selection](assets/lab3/part1-step4_3.jpg)
 
 5. Replace the values for the fields with the following values :
       - **Display name**: `Orders API`
@@ -1054,7 +1059,7 @@ In this first step, we will learn how to expose an API on Azure APIM. We will pu
 <summary> Toggle solution</summary>
 
 > Test it by clicking on the `Test` tab. On the displayed screen, select your operation and click on `Send`
->![TestAPI](assets/lab3/part1.jpg)
+>![Test the API](assets/lab3/part1.jpg)
 
 </details>
 
@@ -1073,18 +1078,18 @@ Now the API is published, we will learn how to create a **Product** we will use 
       - `Published`
       - `Requires Subscription`
 
-    ![ProductCreation](assets/lab3/part2-step2.jpg)
+    ![Product creation](assets/lab3/part2-step2.jpg)
 
 3. Select the created product from the list and click on it.
 
 4. On the next screen, click on `+ Add API`. In the right-hand menu that appears, select the API `Orders API` (the one create on the step 1) and then click `Select`.
 
-    ![ProductAddAPI](assets/lab3/part2-step4.jpg)
+    ![Product - Add an API](assets/lab3/part2-step4.jpg)
 
 5. Select `Access control` from the menu on the left.
 6. Click on `+ Add group`, then in the right-hand menu, select `Developers` before clicking on `Select`.
 
-    ![ProductAddGroup](assets/lab3/part2-step6.jpg)
+    ![Product - Add a Group](assets/lab3/part2-step6.jpg)
 
 
 <div class="task" data-title="Task">
@@ -1092,7 +1097,6 @@ Now the API is published, we will learn how to create a **Product** we will use 
 > - Create a product named `Premium`, link it to the `Orders API`, and enable access control for the `Developers` group.
 
 </div>
-
 
 <details>
 
@@ -1112,7 +1116,7 @@ We will below how create the subscription keys.
 
 1. On the APIM screen, in the menu on the left, click on `Subscriptions`, then click on `+ Add subscription`.
 
-    ![Subscription](assets/lab3/part3_1-step1.jpg)
+    ![Create a subscription](assets/lab3/part3_1-step1.jpg)
 
 2. In the window that opens, fill in the fields with the following values and then click `Create`:
     - **Name**: `Basic-Subscription`
@@ -1120,7 +1124,7 @@ We will below how create the subscription keys.
     - **Scope**: `Product`
     - **Product**: `Basic`
 
-    ![CreateSubscription](assets/lab3/part3_1-step2.jpg)
+    ![See subscription details](assets/lab3/part3_1-step2.jpg)
 
 3. For the purpose of the part 4, repeat steps 1 and 2 to create another subscription linked to the product `Premium`, with the following fields value :
     - **Name**: `Premium-Subscription`
@@ -1130,7 +1134,7 @@ We will below how create the subscription keys.
 
 Now that we have created two subscriptions, each corresponding to one of our products, we can view their values by right-clicking on them and selecting `Show/hide keys`
 
-![CreateSubscription2](assets/lab3/part3_1.jpg)
+![See subscriptions keys](assets/lab3/part3_1.jpg)
 
 > Be sure to note down the values of your keys to use them in the tests we will perform.
 
@@ -1223,14 +1227,6 @@ We will now see how to test our API securized by the OAuth 2.0 standard
 
 > ✅ The Orders API is now secured using the OAuth 2.0 framework!
 
-<details>
-
-<summary> Toggle solution</summary>
-
-TODO: provide solution
-
-</details>
-
 ## Change the behaviour of your API with APIM Policies (15 minutes)
 
 In this final part of the lab, we will learn how to apply APIM policies to dynamically customize API behavior.
@@ -1260,14 +1256,6 @@ To begin, we will set a limit for the Basic user to ensure they cannot call our 
 ![image](assets/lab3/part4_1-Result.jpg)
 
 >💡After the first 5 calls, subsequent calls are blocked. After 1 minutes, calls become possible again.
-
-<details>
-
-<summary> Toggle solution</summary>
-
-TODO: provide solution
-
-</details>
 
 ### Monetize API
 
