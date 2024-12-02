@@ -61,3 +61,4 @@ output name string = storage.name
 output primaryEndpoints object = storage.properties.primaryEndpoints
 output storageId string = storage.id
 output containers array = containers
+output storageConnectionString string = 'DefaultEndpointsProtocol=https;AccountName=${storage.name};AccountKey=${listKeys(storage.id, storage.apiVersion).keys[0].value};EndpointSuffix=core.windows.net'

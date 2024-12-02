@@ -13,7 +13,7 @@ authors: # Required. You can add as many authors as needed
   - Louis-Guillaume Morand
   
 contacts: # Required. Must match the number of authors
-  - "@gdaCellenza"
+  - "guillaume.david@cellenza.com"
   - "alexandre.dejacques@cellenza.com"
   - "@ikhemissi"
   - "@lgmorand"
@@ -159,13 +159,13 @@ Event Grid is an event broker that you can use to integrate applications while s
 
 Event Grid enables event-driven automation by reacting to changes in Azure resources, such as triggering workflows or functions when a blob is uploaded to Azure Blob Storage.
 This simplifies integration and real-time processing across services without constant polling.
-You will use it to trigger the Logic App workflow `wf_flightbooking_from_sa_to_sb` when a blob is uploaded in the `input` container of the Storage Account.
+You will use it to trigger the Logic App workflow `wf_flightbooking_from_sa_to_sb` when a blob is uploaded in the `inputfiles` container of the Storage Account.
 
 The Logic App needs to access the Event Grid service through the Storage Account as it will create an Event Grid System Topic when the Event Grid trigger connector is created. Since we want to use Managed Identities to secure the connection between our Azure Resources, let's check how it is configured in the Storage Account.
 
 <div class="task" data-title="Tasks">
 
->- Check that correct RBAC configuration is applied in the Storage Account `sahandsonlabinoday01`.
+>- Check that correct RBAC configuration is applied in the Storage Account `stdatalabnoipa[randomid]`.
 
 </div>
 
@@ -173,7 +173,7 @@ The Logic App needs to access the Event Grid service through the Storage Account
 
 <summary> Toggle solution</summary>
 
->- Navigate to the Storage Account `sahandsonlabinoday01`.
+>- Navigate to the Storage Account `stdatalabnoipa[randomid]`.
 >- In the left-hand menu, click on `Access Control (IAM)`.
 >- From the top-menu bar, click on Role Assignment and check that Logic App `loahandsonlabinoday01` has the **Event Grid Contributor** role.
 
@@ -185,7 +185,7 @@ You should see the following RBAC configuration in your Storage Account :
 
 ### Check the Event Grid trigger in Logic App
 
-Next step is to actually trigger the Logic App `loahandsonlabinoday01` based on the event raised by your Event Grid System Topic when a file is uploaded to the `input` container.
+Next step is to actually trigger the Logic App `loahandsonlabinoday01` based on the event raised by your Event Grid System Topic when a file is uploaded to the `inputfiles` container.
 
 Azure Logic Apps offers different components which can be used to define the steps of a flow as a chain of actions and controls. Here are the main ones :
 
@@ -227,7 +227,7 @@ In the meatime, let's have a look to the Event Grid subscription.
 
 <div class="task" data-title="Tasks">
 
->- Check the configuration of the Event Grid subscription in the Storage Account `sahandsonlabinoday01`.
+>- Check the configuration of the Event Grid subscription in the Storage Account `stdatalabnoipa[randomid]`.
 
 </div>
 
@@ -235,7 +235,7 @@ In the meatime, let's have a look to the Event Grid subscription.
 
 <summary> Toggle solution</summary>
 
->- Navigate to the Storage Account `sahandsonlabinoday01`.
+>- Navigate to the Storage Account `stdatalabnoipa[randomid]`.
 >- In the left-hand menu, click on Events.
 
 You should see the following configurations in Event Grid Subscription :
@@ -246,7 +246,7 @@ You should see the following configurations in Event Grid Subscription :
 
 <div class="task" data-title="Tasks">
 
-> Check the configuration of the Event Grid subscription in the Storage Account `sahandsonlabinoday01`.
+> Check the configuration of the Event Grid subscription in the Storage Account `stdatalabnoipa[randomid]`.
 
 </div>
 
@@ -306,14 +306,14 @@ You should see the following configuration in your Condition :
 
 ### Check Logic App permission to access Storage Account
 
-The Storage Account is used to store data objects, including blobs, file shares, queues, tables, and disks. In our lab, it is used to store the sample flight booking JSON file inside an `input` container.
+The Storage Account is used to store data objects, including blobs, file shares, queues, tables, and disks. In our lab, it is used to store the sample flight booking JSON file inside an `inputfiles` container.
 
 The Logic App needs to access the Storage Account to retrieve the JSON file, and for the Event Grid trigger connector to list the available Storage Accounts in the Subscription.
 Since we want to use Managed Identities to secure the connection between our Azure Resources, let's check how it is configured in the Storage Account.
 
 <div class="task" data-title="Tasks">
 
->- Check that correct RBAC configuration is applied in the Storage Account `sahandsonlabinoday01`:
+>- Check that correct RBAC configuration is applied in the Storage Account `stdatalabnoipa[randomid]`:
 
 </div>
 
@@ -321,7 +321,7 @@ Since we want to use Managed Identities to secure the connection between our Azu
 
 <summary> Toggle solution</summary>
 
->- Navigate to the Storage Account `sahandsonlabinoday01`.
+>- Navigate to the Storage Account `stdatalabnoipa[randomid]`.
 >- In the left-hand menu, click on `Access Control (IAM)`.
 >- From the top-menu bar, click on Role Assignment and check that Logic App `loahandsonlabinoday01` has the **Storage Blob Data Contributor** role.
 
@@ -333,7 +333,7 @@ You should see the following RBAC configuration in your Storage Account :
 
 ### Retrieve file content
 
-To retrieve the content of the file that will be uploaded in the `input` container, we are using the `Azure Blob Storage` connector and `Read blob content` action.
+To retrieve the content of the file that will be uploaded in the `inputfiles` container, we are using the `Azure Blob Storage` connector and `Read blob content` action.
 
 <div class="task" data-title="Tasks">
 
@@ -350,7 +350,7 @@ To retrieve the content of the file that will be uploaded in the `input` contain
 >- Open the workflow `wf_flightbooking_from_sa_to_sb`.
 >- In the left-hand menu, click on `Designer` from the `Developer` section.
 >- Click on the action `Read blob content`.
->- Make sure that the Container Name is set to `input` and that the Blob Name is set to `last(split(items('For_each')['subject'], '/'))`.
+>- Make sure that the Container Name is set to `inputfiles` and that the Blob Name is set to `last(split(items('For_each')['subject'], '/'))`.
 
 You should see the following configuration in your action :
 
@@ -382,7 +382,7 @@ The Logic App needs to access the Service Bus to publish the message (content of
 
 <div class="task" data-title="Tasks">
 
->- Check that correct RBAC configuration is applied in the Service Bus `sbhandsonlabinoday01`:
+>- Check that correct RBAC configuration is applied in the Service Bus `sb-lab-no-ipa-[randomid]`:
 
 </div>
 
@@ -390,7 +390,7 @@ The Logic App needs to access the Service Bus to publish the message (content of
 
 <summary> Toggle solution</summary>
 
->- Navigate to the Service Bus `sbhandsonlabinoday01`.
+>- Navigate to the Service Bus `sb-lab-no-ipa-[randomid]`.
 >- In the left-hand menu, click on `Access Control (IAM)`.
 >- From the top-menu bar, click on Role Assignment and check that Logic App `loahandsonlabinoday01` has the **Service Bus Data Receiver** and **Service Bus Data Sender** roles.
 
@@ -420,7 +420,7 @@ To do that, we are using the `Service Bus` connector and `Send message to a queu
 >- Open the workflow `wf_flightbooking_from_sa_to_sb`.
 >- In the left-hand menu, click on `Designer` from the `Developer` section.
 >- Click on the action `Send message`.
->- Make sure that the Container Name is set to `input` and that the Blob Name is set to `last(split(items('For_each')['subject'], '/'))`.
+>- Make sure that the Container Name is set to `inputfiles` and that the Blob Name is set to `last(split(items('For_each')['subject'], '/'))`.
 
 You should see the following configuration in your action :
 
@@ -428,7 +428,7 @@ You should see the following configuration in your action :
 
 </details>
 
-At the end of this first section, we have a Logic App workflow that is triggered by an event when a new file is uploaded in the `input` container of our Storage Account, that reads the file content and publish it in a Service Bus topic.
+At the end of this first section, we have a Logic App workflow that is triggered by an event when a new file is uploaded in the `inputfiles` container of our Storage Account, that reads the file content and publish it in a Service Bus topic.
 The next section will focus on the subscription to this message and its processing, before sending it to the target system.
 
 ## Subscribe to the message (5 min)
@@ -601,7 +601,7 @@ We will now see how to retrieve this key for integration into our configuration.
 
 <div class="task" data-title="Tasks">
 
->- Retrieve the Cosmos DB Shared Access Key from `cdbhandsonlabinoday01` Cosmos DB account:
+>- Retrieve the Cosmos DB Shared Access Key from `cos-lab-no-ipa-[randomid]` Cosmos DB account:
 
 </div>
 
@@ -609,7 +609,7 @@ We will now see how to retrieve this key for integration into our configuration.
 
 <summary> Toggle solution</summary>
 
->- Navigate to the Cosmos DB account `cdbhandsonlabinoday01`.
+>- Navigate to the Cosmos DB account `cos-lab-no-ipa-[randomid]`.
 >- In the left-hand menu, click on Keys under the Settings section.
 >- In the Keys section, locate the Primary Key.
 >- Copy the Primary Key by clicking the copy icon next to it.
@@ -688,8 +688,8 @@ To do so, we need to configure our `Create or update document (V3)` connector.
 
 <summary> Toggle solution</summary>
 
->- In the Database Id textbox, enter the following text : `handsonlab`
->- In the Container Id textbox, enter the following text : `items`
+>- In the Database Id textbox, enter the following text : `orders`
+>- In the Container Id textbox, enter the following text : `processed`
 >- In the Item textbox, click on the `lightning` button and select `Outputs` from the previous action `Append id property and generate UUID`
 >- Once everything is set, click on the Save button on the top left corner.
 
@@ -705,12 +705,12 @@ We are now ready to test our workflow.
 
 ### Check the message stored in the CosmosDB
 
-First, let's upload a new file to the `flightbookings` container of the `cdbhandsonlabinoday01` Storage Account to simulate a booking.
+First, let's upload a new file to the `inputfiles` container of the `cos-lab-no-ipa-[randomid]` Storage Account to simulate a booking.
 You can download the JSON file from here: [Download sample JSON file](assets/sample_flightbooking.json)
 
 <div class="task" data-title="Tasks">
 
->- Upload the file in the Storage Account `sahandsonlabinoday01`.
+>- Upload the file in the Storage Account `stdatalabnoipa[randomid]`.
 
 </div>
 
@@ -718,9 +718,9 @@ You can download the JSON file from here: [Download sample JSON file](assets/sam
 
 <summary> Toggle solution</summary>
 
->- Navigate to the Storage Account `sahandsonlabinoday01`.
+>- Navigate to the Storage Account `stdatalabnoipa[randomid]`.
 >- In the left-hand menu, click on `Storage browser` and select `Blob containers`.
->- Click on the `input` container.
+>- Click on the `inputfiles` container.
 >- From the top-menu bar, click on the `Upload` button, click on `Browse for files` and select the `sample_flightbooking.json` file from your Storage Explorer.
 >- Click on the `Upload` button below.
 
@@ -734,7 +734,7 @@ Finally, let's check if our message is stored in our CosmosDB container.
 
 <div class="task" data-title="Tasks">
 
->- Check the document created in CosmosDB `cdbhandsonlabinoday01`.
+>- Check the document created in CosmosDB `cos-lab-no-ipa-[randomid]`.
 
 </div>
 
@@ -742,12 +742,12 @@ Finally, let's check if our message is stored in our CosmosDB container.
 
 <summary> Toggle solution</summary>
 
->- Navigate to the Cosmos DB account `cdbhandsonlabinoday01`.
->- In the left-hand menu, click on `Data explorer` and click on `handsonlab` to open the database
->- Click on `flightbookings` to open the container
+>- Navigate to the Cosmos DB account `cos-lab-no-ipa-[randomid]`.
+>- In the left-hand menu, click on `Data explorer` and click on `orders` to open the database
+>- Click on `toprocess` to open the container
 >- Click on `Items` and select the first line
 
-You should see your transformed message in the `flightbookings` container:
+You should see your transformed message in the `toprocess` container:
 
 ![CosmosDB Container](assets/lab1/image-20.png)
 
@@ -1011,7 +1011,7 @@ TODO: describe what the attendee has learned in this lab sync and async flows wi
 
 For this Lab, we will focus on the following scope :
 
-![image](assets/lab3/lab3-scope.jpg)
+![Process](assets/lab3/lab3-scope.jpg)
 
 ## Expose an API (5 minutes)
 
@@ -1021,18 +1021,18 @@ In this first step, we will learn how to expose an API on Azure APIM. We will pu
 2. On the left pane click on `APIS`
 3. Then, click on `+ Add API` and on the group `Create from Azure resource` select the tile `Function App`
 
-    ![image](assets/lab3/part1-step3.jpg)
+    ![AddAPI](assets/lab3/part1-step3.jpg)
 
 4. In the window that opens :
-    1. For the field `Function App`, click on `Browse`
-    2. Then on the windows that opens :
-    3. On _Configure required settings_, click on `Select` and choose your **Function App**
+    - For the field `Function App`, click on `Browse`
+    - Then on the windows that opens :
+    - On _Configure required settings_, click on `Select` and choose your **Function App**
 
-        ![image](assets/lab3/part1-step4_2.jpg)
+        ![FunctionSettings](assets/lab3/part1-step4_2.jpg)
 
-    4. Be sure the function `FetchOrders` is select and click on `Select`
+    - Be sure the function `FetchOrders` is select and click on `Select`
 
-        ![image](assets/lab3/part1-step4_3.jpg)
+        ![FunctionSelection](assets/lab3/part1-step4_3.jpg)
 
 5. Replace the values for the fields with the following values :
       - **Display name**: `Orders API`
@@ -1042,17 +1042,19 @@ In this first step, we will learn how to expose an API on Azure APIM. We will pu
 
 ✅ **Now the API is ready.**
 
+<div class="task" data-title="Task">
 
-> Test it by clicking on the `Test` tab. On the displayed screen, select your operation and click on `Send`
->![image](assets/lab3/part1.jpg)
+> - Test the operation `FetchOrders` and make sure it returns the latest processed orders.
 
 </div>
+
 
 <details>
 
 <summary> Toggle solution</summary>
 
-TODO: provide solution
+> Test it by clicking on the `Test` tab. On the displayed screen, select your operation and click on `Send`
+>![TestAPI](assets/lab3/part1.jpg)
 
 </details>
 
@@ -1062,7 +1064,7 @@ Now the API is published, we will learn how to create a **Product** we will use 
 
 1. On the APIM screen, in the menu on the left, click on `Products`, then click on `+ Add`.
 
-    ![image](assets/lab3/part2-step1.jpg)
+    ![Product](assets/lab3/part2-step1.jpg)
 
 2. In the window that opens, fill in the fields with the following values and then click `Create`:
     - **Display name**: `Basic`
@@ -1071,26 +1073,32 @@ Now the API is published, we will learn how to create a **Product** we will use 
       - `Published`
       - `Requires Subscription`
 
-    ![image](assets/lab3/part2-step2.jpg)
+    ![ProductCreation](assets/lab3/part2-step2.jpg)
 
 3. Select the created product from the list and click on it.
 
 4. On the next screen, click on `+ Add API`. In the right-hand menu that appears, select the API `Orders API` (the one create on the step 1) and then click `Select`.
 
-    ![image](assets/lab3/part2-step4.jpg)
+    ![ProductAddAPI](assets/lab3/part2-step4.jpg)
 
 5. Select `Access control` from the menu on the left.
-6. Click on `+ Add group`, then in the right-hand menu, select Developers before clicking on `Select`.
+6. Click on `+ Add group`, then in the right-hand menu, select `Developers` before clicking on `Select`.
 
-    ![image](assets/lab3/part2-step6.jpg)
+    ![ProductAddGroup](assets/lab3/part2-step6.jpg)
 
-7. Repeat steps 1 to 6 to create another product named `Premium`
+
+<div class="task" data-title="Task">
+
+> - Create a product named `Premium`, link it to the `Orders API`, and enable access control for the `Developers` group.
+
+</div>
+
 
 <details>
 
 <summary> Toggle solution</summary>
 
-TODO: provide solution
+> Repeat steps 1 to 6 to create another product named `Premium`
 
 </details>
 
@@ -1104,7 +1112,7 @@ We will below how create the subscription keys.
 
 1. On the APIM screen, in the menu on the left, click on `Subscriptions`, then click on `+ Add subscription`.
 
-    ![image](assets/lab3/part3_1-step1.jpg)
+    ![Subscription](assets/lab3/part3_1-step1.jpg)
 
 2. In the window that opens, fill in the fields with the following values and then click `Create`:
     - **Name**: `Basic-Subscription`
@@ -1112,7 +1120,7 @@ We will below how create the subscription keys.
     - **Scope**: `Product`
     - **Product**: `Basic`
 
-    ![image](assets/lab3/part3_1-step2.jpg)
+    ![CreateSubscription](assets/lab3/part3_1-step2.jpg)
 
 3. For the purpose of the part 4, repeat steps 1 and 2 to create another subscription linked to the product `Premium`, with the following fields value :
     - **Name**: `Premium-Subscription`
@@ -1122,23 +1130,36 @@ We will below how create the subscription keys.
 
 Now that we have created two subscriptions, each corresponding to one of our products, we can view their values by right-clicking on them and selecting `Show/hide keys`
 
-![image](assets/lab3/part3_1.jpg)
+![CreateSubscription2](assets/lab3/part3_1.jpg)
 
 > Be sure to note down the values of your keys to use them in the tests we will perform.
 
 We will know test our API with the subscription key.
 
 <div class="tip" data-title="Tips">
+
 > Before continuing, go back to the `Settings` of your API and make sure the `Subscription required` checkbox is checked.
+
 </div>
 
-1. On the APIM screen, in the menu on the left, click on APIs, then click on the `Orders API`.
-2. Next, click on the `Test` tab and copy the value under `Request URL`.
-3. Open Postman, create a new request, paste the value copied in the previous step, and click on `Send`.
+<div class="task" data-title="Task">
 
-    ![image](assets/lab3/part3_1_ResultF.jpg)
+> 1. On the APIM screen, in the menu on the left, click on APIs, then click on the `Orders API`.
+> 2. Next, click on the `Test` tab and copy the value under `Request URL`.
+> 3. Open Postman, create a new request, paste the value copied in the previous step, and click on `Send`.
 
+</div>
+
+<details>
+
+<summary> Toggle solution</summary>
+
+>![SubscriptionResultFailed](assets/lab3/part3_1_ResultF.jpg)
+>
 > 🔴 The result of this test is negative. A 401 Access Denied error is returned by the APIM. The error message states that the subscription key is missing.
+
+
+</details>
 
 4. In the Postman request, under the Headers tab, add the header `Ocp-Apim-Subscription-Key` and specify the value as the key retrieved during the creation of our subscription key. Then click on `Send`.
 

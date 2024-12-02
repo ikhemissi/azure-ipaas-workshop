@@ -85,6 +85,17 @@ module storageAccountFunctions './storageaccount.bicep' = {
   }
 }
 
+module storageAccountLogicApp './storageaccount.bicep' = {
+  name: 'storageAccountLogicApp'
+  scope: resourceGroup
+  params: {
+    location: location
+    tags: tags
+    name: take('stloa${resourceSuffixLowercase}', 24)
+    allowSharedKeyAccess: true
+  }
+}
+
 module dataProcessingFunctionApp './functionapp.bicep' = {
   name: 'data-processing-func'
   scope: resourceGroup
@@ -153,6 +164,19 @@ module dataFetchingFunctionApp './functionapp.bicep' = {
   }
 }
 
+module dataProcessingLogicApp './logicapp.bicep' = {
+  name: 'data-process-loa'
+  scope: resourceGroup
+  params: {
+    planName: 'asp-loa-proc-${resourceSuffixKebabcase}'
+    appName: 'loa-proc-${resourceSuffixKebabcase}'
+    applicationInsightsName: applicationInsights.outputs.name
+    storageAccountName: storageAccountLogicApp.outputs.name
+    storageAccountConnectionString: storageAccountLogicApp.outputs.storageConnectionString
+    tags: tags
+  }
+}
+
 module applicationInsights './appinsights.bicep' = {
   scope: resourceGroup
   name: 'appinsights'
@@ -192,6 +216,8 @@ module servicebus './servicebus.bicep' = {
   params: {
     serviceBusNamespaceName: 'sb-${resourceSuffixKebabcase}'
     serviceBusQueueName: 'orders'
+    serviceBusTopicName: 'topic-flighbooking'
+    serviceBusSubscriptionName: 'sub-flighbooking-cdb'
     location: location
     tags: tags
   }
@@ -274,6 +300,48 @@ module servicebusDataReceiverAssignment './servicebus-role-assign.bicep' = {
     principalId: dataProcessingFunctionApp.outputs.principalId
   }
 }
+
+module servicebusDataSenderAssignmentLogicApp './servicebus-role-assign.bicep' = {
+  scope: resourceGroup
+  name: 'servicebusDataSenderAssignmentLogicApp'
+  params: {
+    namespace: servicebus.outputs.namespaceName
+    roleDefinitionId: '69a216fc-b8fb-44d8-bc22-1f3c2cd27a39' // Azure Service Bus Data Sender
+    principalId: dataProcessingLogicApp.outputs.principalId
+  }
+}
+
+module servicebusDataReceiverAssignmentLogicApp './servicebus-role-assign.bicep' = {
+  scope: resourceGroup
+  name: 'servicebusDataReceiverAssignmentLogicApp'
+  params: {
+    namespace: servicebus.outputs.namespaceName
+    roleDefinitionId: '4f6d3b9b-027b-4f4c-9142-0e5a2a2247e0' // Azure Service Bus Data Receiver
+    principalId: dataProcessingLogicApp.outputs.principalId
+  }
+}
+
+module eventGridContributorAssignmentLogicApp './storageaccount-role-assign.bicep' = {
+  scope: resourceGroup
+  name: 'eventGridContributorAssignmentLogicApp'
+  params: {
+    name: storageAccountData.outputs.name
+    roleDefinitionId: '1e241071-0855-49ea-94dc-649edcd759de' // Event grid contributor role
+    principalId: dataProcessingLogicApp.outputs.principalId
+  }
+}
+
+module blobStorageContributorAssignmentLogicApp './storageaccount-role-assign.bicep' = {
+  scope: resourceGroup
+  name: 'blobStorageContributorAssignmentLogicApp'
+  params: {
+    name: storageAccountData.outputs.name
+    roleDefinitionId: 'ba92f5b4-2d11-453d-a403-e96b0029c9fe' // Storage Blob Data Contributor
+
+    principalId: dataProcessingLogicApp.outputs.principalId
+  }
+}
+
 
 module monitoringMetricsPublisherOrderProcessingAssignment './appinsights-role-assign.bicep' = {
   scope: resourceGroup
