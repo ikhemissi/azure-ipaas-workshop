@@ -40,7 +40,9 @@ During this workshop you will have the instructions to complete each steps. The 
 
 In this lab, you are going to reproduce a real life scenario from a e-commerce platforms, when orders are passed by customers and when you need to process them, ideally asynchronously. You are going to leverage some Azure Services tailored to simplify this integration.
 
-TODO: mettre le schema drawio quand revu par Iheb
+
+![Architecture diagram](./assets/intro/architecture-schema.png)
+
 
 ## Tooling and services
 
@@ -126,7 +128,8 @@ In the Azure portal, you should have a new resource group with a lot of sub reso
 
 For this first lab, you will focus on the following scope :
 
-![Global process](assets/lab1/image.png)
+![Architecture diagram lab 1](./assets/lab1/architecture-schema-lab1.png)
+
 
 ## Detect a file upload event (15 min)
 
@@ -773,6 +776,8 @@ As a reminder, you are now going to use:
 - **Azure Functions**: A serverless compute service that allows you to run event-driven code without managing infrastructure.
 - **Azure Service Bus**: A messaging service that enables reliable communication between distributed applications and services.
 
+![Architecture diagram lab 2](./assets/lab2/architecture-schema-lab2.png)
+
 ## Queueing orders in Service Bus
 
 Asynchronous operations are **essential** in modern applications to ensure that tasks are processed without blocking the main execution flow, improving overall performance and user experience. A message broker like Azure Service Bus enhances resiliency by decoupling application components, allowing them to communicate reliably even if one component is temporarily unavailable. Service Bus supports operation retries, ensuring that messages are eventually processed even in the face of transient failures, thus maintaining the integrity and reliability of the system.
@@ -1022,7 +1027,8 @@ In this lab, you learned how to process and fetch orders using Azure Functions a
 
 For this Lab, we will focus on the following scope :
 
-![Global process](assets/lab3/lab3-scope.jpg)
+![Architecture diagram lab 3](./assets/lab3/architecture-schema-lab3.png)
+
 
 ## Expose an API (5 minutes)
 
