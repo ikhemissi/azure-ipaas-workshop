@@ -44,7 +44,9 @@ In this lab, you are going to reproduce a real life scenario from an e-commerce 
 - Customers will pass new orders that will be synchronized asynchronously.
 - You are going to leverage Azure Services tailored to simplify this integration.
 
-TODO: mettre le schema drawio quand revu par Iheb
+
+![Architecture diagram](./assets/intro/architecture-schema.png)
+
 
 ## Tooling and services
 
@@ -133,7 +135,8 @@ In the Azure portal, you should have a new resource group with a lot of sub reso
 
 For this first lab, you will focus on the following scope :
 
-![Global process](assets/lab1/image.png)
+![Architecture diagram lab 1](./assets/lab1/architecture-schema-lab1.png)
+
 
 ## Detect a file upload event (15 min)
 
@@ -809,6 +812,8 @@ As a reminder, you are now going to use:
 - **Azure Functions**: A serverless compute service that allows you to run event-driven code without managing infrastructure.
 - **Azure Service Bus**: A messaging service that enables reliable communication between distributed applications and services.
 
+![Architecture diagram lab 2](./assets/lab2/architecture-schema-lab2.png)
+
 ## Queueing orders in Service Bus
 
 Asynchronous operations are **essential** in modern applications to ensure that tasks are processed without blocking the main execution flow, improving overall performance and user experience. A message broker like Azure Service Bus enhances resiliency by decoupling application components, allowing them to communicate reliably even if one component is temporarily unavailable. Service Bus supports operation retries, ensuring that messages are eventually processed even in the face of transient failures, thus maintaining the integrity and reliability of the system.
@@ -1059,7 +1064,8 @@ In this lab, you learned how to process and fetch orders using Azure Functions a
 
 For this Lab, we will focus on the following scope :
 
-![Global process](assets/lab3/lab3-scope.jpg)
+![Architecture diagram lab 3](./assets/lab3/architecture-schema-lab3.png)
+
 
 ## Expose an API (5 minutes)
 
@@ -1233,6 +1239,65 @@ We will know test our API with the subscription key.
 ### OAuth 2.0
 
 We will now see how to securize our API with the OAuth 2.0 standard
+
+<details>
+
+<summary>OAuth Configuration on Entra ID</summary>
+
+<div class="warning" data-title="Warning">
+
+> If you are in an instructor-led session, you can skip this section.
+
+</div>
+
+In this section, we will learn how to configure EntraId to enable OAuth security using your identity provider, Azure Entra ID. We will create two App Registrations: one representing the API in Azure Entra ID and another representing the API caller.
+
+First the App Registrations for the API.
+
+- Navigate to the directory hosting the relevant Azure Entra ID.
+- From the portal, search for the Azure Entra ID instance and click on the found resource.
+- In the left-hand menu, click on `App registrations`, then click on `+ New registration`
+
+    ![Add App Registration](assets/lab3/Add-AppRegistration.jpg)
+
+- In the displayed window, fill in the fields with the following values, then click on `Register`:
+    - **Name**: `Orders-api`
+    - **Supported account types**: `Accounts in this organizational directory only (Single tenant)`
+    - **Redirect URL**: `Leave blank`
+
+    ![Register App Registration](assets/lab3/Register-AppRegistration.jpg)
+
+- If the App Registration window does not open automatically, click on the application you just created in the list.
+- From the Overview tile, locate the `Application (client) ID` value and note it down for later use.
+- In the left-hand menu, click on `Expose an API`, then at the top of the page, click on `Set` next to `Application ID URI`. Confirm with the default value.
+
+    ![Configure Scope](assets/lab3/Add-Audience.jpg)
+
+Then, the App Registration for the caller of the API.
+
+- In the left-hand menu, click on `App registrations`, then click on `+ New registration`
+- In the displayed window, fill in the fields with the following values, then click on `Register`:
+    - **Name**: `Caller App`
+    - **Supported account types**: `Accounts in this organizational directory only (Single tenant)`
+    - **Redirect URL**: `Leave blank`
+- From the Overview tile, locate the Application (client) ID value and note it down for later use.
+- In the left-hand menu, click on `Certificates & secrets` and Click on `+ New client secret`
+
+    ![Create Secret](assets/lab3/Add-Secret.jpg)
+
+- In the displayed window, enter `caller-registration-key` as the description, then click on `Add`.
+
+    ![Configure Secret](assets/lab3/Configure-Secret.jpg)
+
+<div class="info" data-title="Note">
+
+> Be careful, make sure to note down the `Value` because it will not be visible again later.
+
+</div>
+
+The Azure EntraId configuration is ready. Let's move on to the API Management section.
+
+</details>
 
 1. On the APIM screen, in the menu on the left, click on APIs, then click on the `Orders API`.
 2. Go to `All operations`. On the right, in the `Inbound processing` section, click on the `</>` icon to access the policy editing mode.
