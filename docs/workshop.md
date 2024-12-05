@@ -140,7 +140,7 @@ For this first lab, you will focus on the following scope :
 
 ## Detect a file upload event (15 min)
 
-TODO: Add a brief summary of the steps before heading to the lab steps
+This labs aims to guide you through building a seamless and secure end-to-end data processing solution using Azure Integration Services. You will learn how to build workflows triggered by file uploads, transform and publish messages, and store them in Cosmos DB, emphasizing best practices for event-driven architectures, integration patterns and security for modern cloud solutions.
 
 ### Secure connections between Azure Services with Managed Identities
 
@@ -197,7 +197,7 @@ You should see the following RBAC configuration in your Storage Account :
 
 ![IAM](assets/lab1/image-1.png)
 
-//TODO: Add a note on why it is important to add this right.
+A Logic App triggered by Event Grid for blob uploads needs the `Event Grid Contributor` role on the storage account to subscribe to Event Grid blob-created events and to validate the webhook endpoint during setup. 
 
 </details>
 
@@ -220,7 +220,7 @@ Since we want to use Managed Identities to secure the connection between our Azu
 
 > - Navigate to the Storage Account `stdatalabnoipa[randomid]`.
 > - In the left-hand menu, click on `Access Control (IAM)`.
-> - From the top-menu bar, click on Role Assignment and check that Logic App `loa-proc-lab-no-ipa-[randomId]` has the **Storage Blob Data Contributor** role. //TODO: Isn't Reader enough ?
+> - From the top-menu bar, click on Role Assignment and check that Logic App `loa-proc-lab-no-ipa-[randomId]` has the **Storage Blob Data Reader** role. 
 
 You should see the following RBAC configuration in your Storage Account :
 
@@ -323,28 +323,27 @@ You should see the following configurations in Event Grid Subscription :
 
 We will now be able to receive new events coming from the Event Grid System Topic when new blobs are uploaded, and trigger the Logic Apps workflow accordingly.
 
-It is now time to define what needs to be done from the reception of this event.
-//TODO: Need to expand on explanations, we're moving from 1 step to the other quickly
+Before processing the Event Grid event, it is essential to validate the webhook to ensure that our workflow is the correct subscriber to the events in the Storage Account and to establish a trusted connection. 
+Until we do not validate this event, the subscription will remain in the 'Creating' state.
+To validate the event, we are using the Response action: `Response Validation Webhook`.
 
 We will add an action to parse the json event with the event grid schema. We can get the schema from [here](https://learn.microsoft.com/en-us/azure/event-grid/event-schema#event-schema).
-The input to Parse JSON step is :
+Adding the `Parse JSON` helps us validating the structure of the incoming Event Grid event and makes it easier to reference specific properties in subsequent steps.
 
+The input to `Parse JSON` step is :
 `@triggerBody()`
 
-We add a condition step after, to check whether the event is a subscription Validation event or not. Condition is:
+After that `Parse JSON` step, we have a condition step, to check whether the event is a subscription Validation event or not. Condition is:
 
 `"equals": [
           "@body('Parse_JSON')[0]?['eventType']",
           "Microsoft.EventGrid.SubscriptionValidationEvent"
         ]`
 
-The reason we need to do this is to validate that our workflow is the correct subscriber to the events in the Storage Account. This is a security mechanism, to avoid untrusted subscribers to our Storage Account.  
-Until we do not validate this event, the subscription will remain in the 'Creating' state.
-To validate the event, we are using the Response action: `Response Validation Webhook`.
-
 <div class="task" data-title="Tasks">
-//TODO: Needs instructions around the use of the "parse payload"
->- Check the configuration of the Condition action in the Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sa_to_sb`.
+
+>- Check the configuration of the `Parse JSON` to ensure the JSON schema referenced in the step is matching the documentation [here](https://learn.microsoft.com/en-us/azure/event-grid/event-schema#event-schema)
+>- Check the configuration of the `Condition` action in the Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sa_to_sb`.
 
 </div>
 
@@ -356,9 +355,14 @@ To validate the event, we are using the Response action: `Response Validation We
 > - In the left-hand menu, click on `Workflows` from the `Workflows` section.
 > - Open the workflow `wf_orders_from_sa_to_sb`.
 > - In the left-hand menu, click on `Designer` from the `Developer` section.
+> - Click on the step `Parse JSON`
 > - Click on the condition `Condition`
 
-You should see the following configuration in your Condition :
+You should see the following configuration in your `Parse JSON` step :
+
+![Logic App Parse JSON](assets/lab1/image-21.png)
+
+You should see the following configuration in your `Condition` step :
 
 ![Logic App Condition](assets/lab1/image-4.png)
 
@@ -526,7 +530,71 @@ Additionally, Logic Apps supports external tools like Azure API Management for p
 We need to transform the initial message to a simplified JSON schema that is expected by the target system.
 By consolidating passenger names into a list and focusing on key flight and payment details, we make the data more compact and easier for the target system to process.
 
-TODO: Possible to add the inital JSON Object format ?
+This is the message JSON format sent by the source system:
+
+```json
+{
+  "booking": {
+		  "bookingId": "B12345678",
+		  "bookingDate": "2022-02-08T12:00:00Z",
+		  "passengers": [
+			{
+			  "firstName": "John",
+			  "lastName": "Doe",
+			  "email": "johndoe@example.com",
+			  "dob": "1990-01-01",
+			  "gender": "M",
+			  "address": {
+				"street": "123 Main St",
+				"city": "Anytown",
+				"state": "CA",
+				"postalCode": "12345",
+				"country": "USA"
+			  },
+			  "phoneNumber": "+1 555-555-5555"
+			},
+			{
+			  "firstName": "Jane",
+			  "lastName": "Doe",
+			  "email": "janedoe@example.com",
+			  "dob": "1992-03-15",
+			  "gender": "F",
+			  "address": {
+				"street": "456 Second St",
+				"city": "Anycity",
+				"state": "CA",
+				"postalCode": "67890",
+				"country": "USA"
+			  },
+			  "phoneNumber": "+1 555-555-5556"
+			}
+		  ],
+		  "flight": {
+			"flightNumber": "UA123",
+			"origin": "SFO",
+			"destination": "JFK",
+			"departureDate": "2022-02-15T08:00:00Z",
+			"arrivalDate": "2022-02-15T16:00:00Z",
+			"airline": "United Airlines",
+			"fareClass": "Economy",
+			"farePrice": 250.00
+		  },
+		  "payment": {
+			"cardType": "Visa",
+			"cardNumber": "**** **** **** 1234",
+			"expirationDate": "03/24",
+			"billingAddress": {
+			  "street": "789 Third St",
+			  "city": "Anyvillage",
+			  "state": "CA",
+			  "postalCode": "24680",
+			  "country": "USA"
+			},
+			"totalPrice": 500.00
+		  }
+	}
+}
+```
 
 This is the message JSON format expected by the target system:
 
@@ -551,8 +619,9 @@ This is the message JSON format expected by the target system:
 }
 ```
 
-To simplify the Json object transformation process, we'll use the powerful capabilities of XSLT to manipulate the structure of the data.
-However, the use of XSLT requires to manipulate XML data, and we'll need to first transform the Json to an XML format, to apply the XSLT transformation, and back to a Json formatted data for the target system.
+While there are many solutions to transform a JSON object in Logic Apps, we want to showcase the use of the `Transform XML` action, which leverages the powerful capabilities of XSLT—a widely used language in the integration world—to manipulate and restructure data effectively.
+
+The use of XSLT requires to manipulate XML data, so we'll need to first transform the Json to an XML format, to apply the XSLT transformation, and back to a Json formatted data for the target system.
 
 We will use a `Compose` action with a function to transform the JSON message into an XML format.
 
@@ -796,6 +865,12 @@ You should see your transformed message in the `toprocess` container:
 ![CosmosDB Container](assets/lab1/image-20.png)
 
 </details>
+
+<div class="info" data-title="Note">
+
+> If you don't see your message in CosmosDB, please re-upload the file. The first time you upload a file in the blob storage, Event Grid sends the validation event multiple time to the Logic App until it receives validation. Once validated, Event Grid will start sending actual events, which may require to re-upload the file.
+
+</div>
 
 ---
 

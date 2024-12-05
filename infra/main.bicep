@@ -340,7 +340,7 @@ module blobStorageContributorAssignmentLogicApp './storageaccount-role-assign.bi
   name: 'blobStorageContributorAssignmentLogicApp'
   params: {
     name: storageAccountData.outputs.name
-    roleDefinitionId: 'ba92f5b4-2d11-453d-a403-e96b0029c9fe' // Storage Blob Data Contributor
+    roleDefinitionId: '2a2b9908-6ea1-4ae2-8e65-a410df84e7d1' // Storage Blob Data Reader
 
     principalId: dataProcessingLogicApp.outputs.principalId
   }
