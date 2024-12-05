@@ -28,9 +28,9 @@ navigation_levels: 3
 
 Welcome to this Azure iPaaS Workshop. You'll be experimenting with multiple integration services to build an event-driven data processing application.
 
-You should ideally have a basic understanding of Azure, but if not then do not worry, you will be guided through the whole process.
+You should ideally have a basic understanding of Azure, but if not, do not worry, you will be guided through the whole process.
 
-During this workshop you will have the instructions to complete each steps. The solutions are placed under the 'Toggle solution' panel.
+During this workshop you will have the instructions to complete each step. The solutions are placed under the 'Toggle solution' panels.
 
 <div class="task" data-title="Task">
 
@@ -39,14 +39,12 @@ During this workshop you will have the instructions to complete each steps. The 
 
 </div>
 
-In this lab, you are going to reproduce a real life scenario from an e-commerce platform:
+In this lab, you are going to reproduce a real-life scenario from an e-commerce platform:
 
-- Customers will pass new orders that will be synchronized asynchronously.
+- Customers will place new orders that will be synchronized asynchronously.
 - You are going to leverage Azure Services tailored to simplify this integration.
 
-
 ![Architecture diagram](./assets/intro/architecture-schema.png)
-
 
 ## Tooling and services
 
@@ -56,7 +54,7 @@ In this lab, you are going to reproduce a real life scenario from an e-commerce 
 - **Azure Developer CLI** (azd): `azd` is a command-line interface designed to simplify the deployment and management of applications on Azure. It provides a unified experience for developers to build, deploy, and monitor their applications using a set of easy-to-use commands. With `azd`, you can streamline your workflow, automate repetitive tasks, and ensure consistent deployments across different environments.
 - **GitHub Codespace**: GitHub Codespaces provides a cloud-based development environment that allows you to code, build, test, and collaborate from anywhere. It offers a fully configured development environment that can be accessed directly from your browser or through Visual Studio Code. With Codespaces, you can quickly spin up a development environment with all the necessary tools and dependencies, ensuring a consistent setup across your team.
 
-You will require a tool to send HTTP requests without coding such as [Postman](https://www.postman.com/), [Bruno](https://www.usebruno.com/) or [VSCode thunder](https://www.thunderclient.com/) or [VSCode Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
+You will require a tool to send HTTP requests without coding, such as [Postman](https://www.postman.com/), [Bruno](https://www.usebruno.com/) or [VSCode thunder](https://www.thunderclient.com/) or [VSCode Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ## Prepare your dev environment
 
@@ -785,9 +783,9 @@ The configuration should look like that:
 
 </details>
 
-Once the connection is set-up, we can configure the action.
+Once the connection is set up, we can configure the action.
 We are now ready to send our message to our CosmosDB account.  
-To do so, we need to configure our `Create or update item` connector.
+To do so, we need to configure the `Create or update item` connector.
 
 <div class="task" data-title="Tasks">
 
@@ -804,7 +802,7 @@ To do so, we need to configure our `Create or update item` connector.
 > - In the Item textbox, click on the `lightning` button and select `Outputs` from the previous action `Append id property and generate UUID`
 > - Once everything is set, click on the Save button on the top left corner.
 
-The action should look like this :
+The action should look like this:
 
 ![Create Or Update Item](assets/lab1/image-16.png)
 
@@ -866,7 +864,7 @@ You should see your transformed message in the `toprocess` container:
 
 <div class="info" data-title="Note">
 
-> If you don't see your message in CosmosDB, please re-upload the file. The first time you upload a file in the blob storage, Event Grid sends the validation event multiple time to the Logic App until it receives validation. Once validated, Event Grid will start sending actual events, which may require to re-upload the file.
+> If you don't see your message in CosmosDB, please re-upload the file. The first time you upload a file to the blob storage, Event Grid sends the validation event multiple times to the Logic App until it receives validation. Once validated, Event Grid will start sending actual events, which may require re-uploading the file.
 
 </div>
 
@@ -874,11 +872,11 @@ You should see your transformed message in the `toprocess` container:
 
 # Lab 2 : Sync and async patterns with Azure Functions and Service Bus (45m)
 
-In the previous lab, we have added orders to CosmosDB.
-In this lab, we will focus on processing and fetching these orders by implementing 2 workflows:
+In the previous lab, we have added orders to a CosmosDB database.
+In this lab, we will focus on processing and fetching these orders by implementing two workflows:
 
-- Processing orders asynchronously using Azure Functions and Service Bus
-- Fetching and serving order synchronously va HTTP using Azure Functions
+1. Processing orders asynchronously using Azure Functions and Service Bus
+2. Fetching and serving order synchronously via HTTP using Azure Functions
 
 As a reminder, you are now going to use:
 
