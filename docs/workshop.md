@@ -707,8 +707,6 @@ It currently supports NoSQL, MongoDB, Cassandra, Gremlin, Table and PostgreSQL A
 Before creating the document in Cosmos DB, we need to add a unique `id` property to the document, as it is mandatory.
 We will use a `Compose` action to generate a unique identifier and append an `id` property to our message.
 
-TODO (julien): Read up to this point, will continue tomorrow morning 
-
 <div class="task" data-title="Tasks">
 
 > - Configure a `Compose` action to generate a UUID and append the id property in Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sb_to_cdb`.
