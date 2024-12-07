@@ -135,7 +135,6 @@ For this first lab, you will focus on the following scope :
 
 ![Architecture diagram lab 1](./assets/lab1/architecture-schema-lab1.png)
 
-
 ## Detect a file upload event (15 min)
 
 This labs aims to guide you through building a seamless and secure end-to-end data processing solution using Azure Integration Services. You will learn how to build workflows triggered by file uploads, transform and publish messages, and store them in Cosmos DB, emphasizing best practices for event-driven architectures, integration patterns and security for modern cloud solutions.
@@ -189,7 +188,7 @@ The Logic App needs to access the Event Grid service through the Storage Account
 
 > - Navigate to the Storage Account `stdatalabnoipa[randomid]`.
 > - In the left-hand menu, click on `Access Control (IAM)`.
-> - From the top-menu bar, click on Role Assignment and check that Logic App `loa-proc-lab-no-ipa-[randomId]` system managed identity has the **Event Grid Contributor** role.
+> - From the top-menu bar, click on `Role Assignment` and check that Logic App `loa-proc-lab-no-ipa-[randomId]` system managed identity has the **Event Grid Contributor** role.
 
 You should see the following RBAC configuration in your Storage Account :
 
@@ -218,7 +217,7 @@ Since we want to use Managed Identities to secure the connection between our Azu
 
 > - Navigate to the Storage Account `stdatalabnoipa[randomid]`.
 > - In the left-hand menu, click on `Access Control (IAM)`.
-> - From the top-menu bar, click on Role Assignment and check that Logic App `loa-proc-lab-no-ipa-[randomId]` has the **Storage Blob Data Reader** role. 
+> - From the top-menu bar, click on `Role Assignment` and check that Logic App `loa-proc-lab-no-ipa-[randomId]` has the **Storage Blob Data Reader** role.
 
 You should see the following RBAC configuration in your Storage Account :
 
@@ -307,8 +306,8 @@ In the meatime, let's have a look at the Event Grid subscription.
 <summary> Toggle solution</summary>
 
 > - Navigate to the Storage Account `stdatalabnoipa[randomid]`.
-> - In the left-hand menu, click on Events.
-> - Click on the name of the Subscription on the bottom of the page.
+> - In the left-hand menu, click on `Events`.
+> - Click on the name of the Logic App's subscription on the bottom of the page.
 
 You should see the following configurations in Event Grid Subscription :
 
@@ -321,7 +320,7 @@ You should see the following configurations in Event Grid Subscription :
 
 We will now be able to receive new events coming from the Event Grid System Topic when new blobs are uploaded, and trigger the Logic Apps workflow accordingly.
 
-Before processing the Event Grid event, it is essential to validate the webhook to ensure that our workflow is the correct subscriber to the events in the Storage Account and to establish a trusted connection. 
+Before processing the Event Grid event, it is essential to validate the webhook to ensure that our workflow is the correct subscriber to the events in the Storage Account and to establish a trusted connection.
 Until we do not validate this event, the subscription will remain in the 'Creating' state.
 To validate the event, we are using the Response action: `Response Validation Webhook`.
 
@@ -430,7 +429,7 @@ The Logic App needs to access the Service Bus resource to publish the message (c
 
 > - Navigate to the Service Bus `sb-lab-no-ipa-[randomid]`.
 > - In the left-hand menu, click on `Access Control (IAM)`.
-> - From the top-menu bar, click on Role Assignment and confirm that Logic App `loa-proc-lab-no-ipa-[randomId]` has the **Service Bus Data Receiver** and **Service Bus Data Sender** roles.
+> - From the top-menu bar, click on `Role Assignment` and confirm that Logic App `loa-proc-lab-no-ipa-[randomId]` has the **Service Bus Data Receiver** and **Service Bus Data Sender** roles.
 
 You should see the following RBAC configuration in your Service Bus Namespace :
 
@@ -497,7 +496,7 @@ As the Service Bus connection configuration is already done, we will focus on th
 > - In the `triggers` list search for `Service Bus` and select the `When messages are available in a topic` trigger.
 > - In the Topic Name dropdown list, select the `topic-orders` topic.
 > - In the Subscription Name dropdown list, select the `sub-orders-cdb` subscription.
-> - Once everything is set, click on the Save button on the top left corner.
+> - Once everything is set, click on the `Save` button on the top left corner.
 
 The trigger operation should look like this :
 
@@ -533,64 +532,64 @@ This is the message JSON format sent by the source system:
 ```json
 {
   "booking": {
-		  "bookingId": "B12345678",
-		  "bookingDate": "2022-02-08T12:00:00Z",
-		  "passengers": [
-			{
-			  "firstName": "John",
-			  "lastName": "Doe",
-			  "email": "johndoe@example.com",
-			  "dob": "1990-01-01",
-			  "gender": "M",
-			  "address": {
-				"street": "123 Main St",
-				"city": "Anytown",
-				"state": "CA",
-				"postalCode": "12345",
-				"country": "USA"
-			  },
-			  "phoneNumber": "+1 555-555-5555"
-			},
-			{
-			  "firstName": "Jane",
-			  "lastName": "Doe",
-			  "email": "janedoe@example.com",
-			  "dob": "1992-03-15",
-			  "gender": "F",
-			  "address": {
-				"street": "456 Second St",
-				"city": "Anycity",
-				"state": "CA",
-				"postalCode": "67890",
-				"country": "USA"
-			  },
-			  "phoneNumber": "+1 555-555-5556"
-			}
-		  ],
-		  "flight": {
-			"flightNumber": "UA123",
-			"origin": "SFO",
-			"destination": "JFK",
-			"departureDate": "2022-02-15T08:00:00Z",
-			"arrivalDate": "2022-02-15T16:00:00Z",
-			"airline": "United Airlines",
-			"fareClass": "Economy",
-			"farePrice": 250.00
-		  },
-		  "payment": {
-			"cardType": "Visa",
-			"cardNumber": "**** **** **** 1234",
-			"expirationDate": "03/24",
-			"billingAddress": {
-			  "street": "789 Third St",
-			  "city": "Anyvillage",
-			  "state": "CA",
-			  "postalCode": "24680",
-			  "country": "USA"
-			},
-			"totalPrice": 500.00
-		  }
-	}
+      "bookingId": "B12345678",
+      "bookingDate": "2022-02-08T12:00:00Z",
+      "passengers": [
+      {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "johndoe@example.com",
+        "dob": "1990-01-01",
+        "gender": "M",
+        "address": {
+        "street": "123 Main St",
+        "city": "Anytown",
+        "state": "CA",
+        "postalCode": "12345",
+        "country": "USA"
+        },
+        "phoneNumber": "+1 555-555-5555"
+      },
+      {
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "janedoe@example.com",
+        "dob": "1992-03-15",
+        "gender": "F",
+        "address": {
+        "street": "456 Second St",
+        "city": "Anycity",
+        "state": "CA",
+        "postalCode": "67890",
+        "country": "USA"
+        },
+        "phoneNumber": "+1 555-555-5556"
+      }
+     ],
+      "flight": {
+      "flightNumber": "UA123",
+      "origin": "SFO",
+      "destination": "JFK",
+      "departureDate": "2022-02-15T08:00:00Z",
+      "arrivalDate": "2022-02-15T16:00:00Z",
+      "airline": "United Airlines",
+      "fareClass": "Economy",
+      "farePrice": 250.00
+      },
+      "payment": {
+      "cardType": "Visa",
+      "cardNumber": "**** **** **** 1234",
+      "expirationDate": "03/24",
+      "billingAddress": {
+        "street": "789 Third St",
+        "city": "Anyvillage",
+        "state": "CA",
+        "postalCode": "24680",
+        "country": "USA"
+      },
+      "totalPrice": 500.00
+      }
+  }
 }
 ```
 
@@ -637,10 +636,10 @@ We will use a `Compose` action with a function to transform the JSON message int
 > - In the left-hand menu, click on `Workflows` from the `Workflows` section.
 > - Open the workflow `wf_orders_from_sb_to_cdb`.
 > - In the left-hand menu, click on `Designer` from the `Developer` section.
-> - Click on the `+` button, select `Add an action` and search for `Compose` from the list of actions.
+> - Click on the `+` button, select `Add an action` and search for `Compose` from the list of actions (in the **Data Operations** connector).
 > - In the `Inputs` field of the Compose action, click on the `fx` icon and enter the following function: `xml(json(triggerBody()?['contentData']))`.
-> - Rename the action `JSON to XML`
-> - Once everything is set, click on the Save button at the top left corner.
+> - Rename the action `JSON to XML`. It not obvious, but you have to click on the title "Compose" to do so.
+> - Once everything is set, click on the `Save` button at the top left corner.
 
 The Compose action should look like this :
 
@@ -665,7 +664,7 @@ We will then use a `Transform XML` action to transform the XML message into the 
 > - In the Map Source dropdown list, select `LogicApp`.
 > - In the Map Name dropdown list, select `transformation_orders`.
 > - Rename the action `Transform XML`
-> - Once everything is set, click on the Save button at the top left corner.
+> - Once everything is set, click on the `Save` button at the top left corner.
 
 The Transform XML action should look like this :
 
@@ -688,7 +687,7 @@ We will now use a `Compose` action with a function to transform the XML transfor
 > - Click on the `+` button, select `Add an action` and search for `Compose` from the list of actions.
 > - In the Inputs field of the Compose action, click on the `fx` icon and enter the following function: `json(body('Transform_XML'))`.
 > - Rename the action `XML to JSON`
-> - Once everything is set, click on the Save button at the top left corner.
+> - Once everything is set, click on the `Save` button at the top left corner.
 
 The Compose action should look like this :
 
@@ -718,7 +717,7 @@ We will use a `Compose` action to generate a unique identifier and append an `id
 > - Click on the `+` button, select `Add an action` and search for `Compose`.
 > - In the Inputs textbox, click on the `fx` icon and enter the following text : `addProperty(outputs('XML_to_JSON'), 'id', guid())`
 > - Rename the action `Append id property and generate UUID`
-> - Once everything is set, click on the Save button on the top left corner.
+> - Once everything is set, click on the `Save` button on the top left corner.
 
 The Compose action should look like this :
 
@@ -743,9 +742,9 @@ We will now see how to retrieve this key for integration into our configuration.
 <summary> Toggle solution</summary>
 
 > - Navigate to the Cosmos DB account `cos-lab-no-ipa-[randomid]`.
-> - In the left-hand menu, click on Keys under the Settings section.
-> - In the Keys section, locate the Primary Key.
-> - Copy the Primary Key by clicking the copy icon next to it.
+> - In the left-hand menu, click on `Keys` under the Settings section.
+> - In the Keys section, locate the **Primary Key**.
+> - Copy the **Primary connection string** by clicking the copy icon next to it.
 > - The key is now ready to be used in your Logic App configuration.
 
 You should see the following Credentials :
@@ -775,7 +774,7 @@ First, we need to configure the connection to our CosmosDB account.
 > - In the left-hand menu, click on `Designer` from the `Developer` section.
 > - Click on the `+` button, select `Add an action` and search for `Cosmos DB`.
 > - Select `Create or update item`
-> - Set the connection with your Cosmos Db Instance: Select the Access Key authentication type and set the primary key that you retrieved in the previous step
+> - Set the connection with your Cosmos Db Instance: Select the the primary connection string that you retrieved in the previous step
 
 The configuration should look like that:
 
@@ -800,7 +799,7 @@ To do so, we need to configure the `Create or update item` connector.
 > - In the Database Id textbox, enter the following text : `orders`
 > - In the Container Id textbox, enter the following text : `toprocess`
 > - In the Item textbox, click on the `lightning` button and select `Outputs` from the previous action `Append id property and generate UUID`
-> - Once everything is set, click on the Save button on the top left corner.
+> - Once everything is set, click on the `Save` button on the top left corner.
 
 The action should look like this:
 
@@ -864,7 +863,7 @@ You should see your transformed message in the `toprocess` container:
 
 <div class="info" data-title="Note">
 
-> If you don't see your message in CosmosDB, please re-upload the file. The first time you upload a file to the blob storage, Event Grid sends the validation event multiple times to the Logic App until it receives validation. Once validated, Event Grid will start sending actual events, which may require re-uploading the file.
+> If you don't see your message in CosmosDB, please re-upload the file. The first time you upload a file to the blob storage, Event Grid sends the validation event multiple times to the Logic App until it receives validation. Once validated, Event Grid will start sending actual events, which may require re-uploading the file. You can overwrite the existing file.
 
 </div>
 
@@ -893,7 +892,7 @@ The data processing function app (with a name starting with `func-proc-lab`) sho
 
 <div class="task" data-title="Task">
 
-> - Update the `QueueOrders` function to queue messages in Service Bus for every new document in CosmosDb
+> - Update the `QueueOrders` function to queue messages in Service Bus for every new document in CosmosDb. You have **to edit the code locally** (not in Azure portal).
 
 </div>
 
@@ -1038,7 +1037,7 @@ Now that you have implemented the full order processing pipeline, you will need 
 
 <summary> Toggle solution</summary>
 
-Re-test your Logic App, then go to CosmosDB, and locate the `processed` container.
+Re-test your Logic App by adding a new file, then go to CosmosDB, and locate the `processed` container.
 
 You should be able to see new entries with the test data which you have used with Logic Apps.
 
@@ -1119,7 +1118,7 @@ Once you have deployed your updated Function App, you need to test your new chan
 
 <summary> Toggle solution</summary>
 
-Open the function in the Azure portal and click on `Get function URL`. A side panel should open.
+Open the function in the Azure portal and click on `Get function URL`. A side panel should open. You can take any URL because for this lab, we disabled the key.
 
 ![Get function's URL](assets/lab2/getfunctionurl.png)
 
@@ -1137,13 +1136,12 @@ For this Lab, we will focus on the following scope :
 
 ![Architecture diagram lab 3](./assets/lab3/architecture-schema-lab3.png)
 
-
 ## Expose an API (5 minutes)
 
 In this first step, we will learn how to expose an API on Azure APIM. We will publish the API to fetch orders deployed in Lab 2.
 
-1. Go the Azure APIM `ApimName`
-2. On the left pane click on `APIS`
+1. Go the Azure APIM (name should start with `apim-lab-no-ipa`)
+2. On the left pane click on `APIs`
 3. Then, click on `+ Add API` and on the group `Create from Azure resource` select the tile `Function App`
 
    ![Add an API](assets/lab3/part1-step3.jpg)
@@ -1203,7 +1201,7 @@ Now the API is published, we will learn how to create a **Product** we will use 
 
 3. Select the created product from the list and click on it.
 
-4. On the next screen, click on `+ Add API`. In the right-hand menu that appears, select the API `Orders API` (the one create on the step 1) and then click `Select`.
+4. On the next screen, click on `+ Add API`. In the right-hand menu that appears, select the API `Orders API` (the one created on the step 1) and then click `Select`.
 
    ![Product - Add an API](assets/lab3/part2-step4.jpg)
 
@@ -1275,7 +1273,7 @@ We will know test our API with the subscription key.
 
 > - On the APIM screen, in the menu on the left, click on APIs, then click on the `Orders API`.
 > - Next, click on the `Test` tab and copy the value under `Request URL`.
-> - Open Postman, create a new request, paste the value copied in the previous step, and click on `Send`.
+> - Open Postman (or any other tool to post requests), create a new request, paste the value copied in the previous step, and click on `Send`.
 
 </div>
 
@@ -1425,7 +1423,7 @@ On Postman, create a new request with the following information
 
 <div class="task" data-title="Task">
 
-> - Go back add he Bearer token to the `FetchOrders` request.
+> - Go back add the Bearer token to the `FetchOrders` request.
 > - Send the request and observe the result.
 
 </div>
