@@ -823,9 +823,9 @@ To do so, we need to configure the `Create or update item` connector.
 
 <summary> Toggle solution</summary>
 
-> - In the Database Id textbox, enter the following text : `orders`
-> - In the Container Id textbox, enter the following text : `toprocess`
-> - In the Item textbox, click on the `lightning` button and select `Outputs` from the previous action `Append id property and generate UUID`
+> - In the **Database Id** textbox, enter the following text : `orders`
+> - In the **Container Id** textbox, enter the following text : `toprocess`
+> - In the **Item** textbox, click on the `lightning` button and select `Outputs` from the previous action `Append id property and generate UUID`
 > - Once everything is set, click on the `Save` button on the top left corner.
 
 The action should look like this:
