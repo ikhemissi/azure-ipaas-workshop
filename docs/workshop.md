@@ -768,7 +768,7 @@ We will now see how to retrieve this key for integration into our configuration.
 
 > - Navigate to the Cosmos DB account `cos-lab-no-ipa-[randomid]`.
 > - In the left-hand menu, click on `Keys` under the Settings section.
-> - In the Keys section, locate the **Primary Key**.
+> - In the Keys section, locate the **Primary connestion string**.
 > - Copy the **Primary connection string** by clicking the copy icon next to it.
 > - The key is now ready to be used in your Logic App configuration.
 
