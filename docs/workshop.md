@@ -1091,7 +1091,7 @@ Now that you have implemented the full order processing pipeline, you will need 
 
 <summary> Toggle solution</summary>
 
-> -  Re-test your Logic App by adding a new file like we did in the previous step 
+> - Re-test your Logic App by adding a new file like we did in the previous step 
 > - Navigate to the Cosmos DB account `cos-lab-no-ipa-[randomid]`.
 > - In the left-hand menu, click on `Data explorer` and click on `orders` to open the database
 > - Click on `processed` to open the container
@@ -1178,7 +1178,11 @@ Once you have deployed your updated Function App, you need to test your new chan
 
 <summary> Toggle solution</summary>
 
-Open the function in the Azure portal and click on `Get function URL`. A side panel should open. You can take any URL because for this lab, we disabled the key.
+>- Go to the Azure Portal 
+>- Navigate to your fecth order Function App (`func-ftch-lab-[randomId]`).
+>- Clixk on the `FetchOrdes` function 
+>- Click on `Get function URL`. A side panel should open. 
+>- You can take any URL because for this lab, we disabled the key.
 
 ![Get function's URL](assets/lab2/getfunctionurl.png)
 
