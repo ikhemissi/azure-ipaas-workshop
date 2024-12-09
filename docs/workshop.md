@@ -955,7 +955,8 @@ The data processing function app (`func-proc-lab-[randomId]`) should already hav
 
 <summary> Toggle solution</summary>
 
-In the file `src/dataprocessing/src/functions/QueueOrders.js`, uncomment the lines 3 to 6, and line 13 by removing `//` from each line beginning.
+>- Navigate to the file `src/dataprocessing/src/functions/QueueOrders.js`.
+>- Uncomment the lines 3 to 6, and line 13 by removing `//` from each line beginning.
 
 Your code should look like:
 
@@ -1091,7 +1092,7 @@ Now that you have implemented the full order processing pipeline, you will need 
 
 <summary> Toggle solution</summary>
 
->- Re-test your Logic App by adding a new file like we did in the previous step 
+> -  Re-test your Logic App by adding a new file like we did in the previous step 
 > - Navigate to the Cosmos DB account `cos-lab-no-ipa-[randomid]`.
 > - In the left-hand menu, click on `Data explorer` and click on `orders` to open the database
 > - Click on `processed` to open the container
@@ -1124,7 +1125,8 @@ In this last exercice of Lab2, you need to update the data fetching Function App
 
 <summary> Toggle solution</summary>
 
-In the file `src/datafetching/src/functions/FetchOrders.js`, uncomment the line 18 by removing `//` from the line beginning.
+> - Navigate to the file `src/datafetching/src/functions/FetchOrders.js`, 
+> - Uncomment the line 18 by removing `//` from the line beginning.
 
 Your code should look like:
 
