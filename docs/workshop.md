@@ -1091,9 +1091,14 @@ Now that you have implemented the full order processing pipeline, you will need 
 
 <summary> Toggle solution</summary>
 
-Re-test your Logic App by adding a new file, then go to CosmosDB, and locate the `processed` container.
+>- Re-test your Logic App by adding a new file like we did in the previous step 
+> - Navigate to the Cosmos DB account `cos-lab-no-ipa-[randomid]`.
+> - In the left-hand menu, click on `Data explorer` and click on `orders` to open the database
+> - Click on `processed` to open the container
+> - Click on `Items` and select the first line
 
 You should be able to see new entries with the test data which you have used with Logic Apps.
+!['Processed item in CosmoDB'](./assets/lab2/cosmosdb-processed.png)
 
 </details>
 
