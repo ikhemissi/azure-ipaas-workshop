@@ -1000,10 +1000,17 @@ Once you have deployed your updated Function App, you need to test your new chan
 
 <summary> Toggle solution</summary>
 
-Locate your data processing Function App (`func-proc-lab-[randomId]`), click on the function `ProcessOrders`, and check the `Invocations` tab.
+> - Navigate to the Storage Account `stdatalabnoipa[randomid]`.
+> - In the left-hand menu, click on `Storage browser` and select `Blob containers`.
+> - Click on the `inputfiles` container.
+> - From the top-menu bar, click on the `Upload` button, click on `Browse for files` and select the `sample_order.json` file from your Storage Explorer.
+> - Click on the `Upload` button below.
+> - Navigate to your data processing Function App (`func-proc-lab-[randomId]`).
+> - Click on the function `ProcessOrders`.
+> - Check the `Invocations` tab.
 
 You should see a new recent invocation (this may take a while).
-
+// TO DO : Add screenshot of the invocation tab
 Check the logs of the invocation to get more details.
 
 </details>
