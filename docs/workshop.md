@@ -934,7 +934,8 @@ A fully managed, distributed NoSQL, relational, and vector database service desi
 
 Asynchronous operations are **essential** in modern applications to ensure that tasks are processed without blocking the main execution flow, improving overall performance and user experience. A message broker like Azure Service Bus enhances resiliency by decoupling application components, allowing them to communicate reliably even if one component is temporarily unavailable. Service Bus supports operation retries, ensuring that messages are eventually processed even in the face of transient failures, thus maintaining the integrity and reliability of the system.
 
-The data processing function app (`func-proc-lab-[randomId]`) should already have 2 functions deployed `QueueOrders` and `ProcessOrders`.
+The data processing function app (`func-proc-lab-[randomId]`) should already have 2 functions deployed `QueueOrders` and `ProcessOrders`like this 
+!["Functions deployed'](./assets/lab2/functions_deployed.png)
 
 <div class="task" data-title="Task">
 
