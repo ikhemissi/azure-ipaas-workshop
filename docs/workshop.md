@@ -100,17 +100,19 @@ To get started quickly, we will be using the following services and tools:
 
 ### Provision resources in Azure
 
+From the codespace environment opened in previous step, open a terminal (`ctrl+J` if not open in the bottom of the Github Codespace view) and execute the following tasks.
+Azure Developer (azd) up will provision the infrastructure needed for the rest of the workshop, as well as deploy the application packages and configurations to help us accelerate on the labs.
+
 <div class="task" data-title="Task">
 
-> - Log into the [Azure Portal](https://portal.azure.com)
-> - Use `azd up` from your terminal to provision resources in Azure and deploy the applications described in `azure.yaml` (you can find this file at the root of the project)
+> - Log into the [Azure Portal](https://portal.azure.com).
+> - Use `azd up` from your GH Codespace terminal to provision resources in Azure and deploy the applications described in `azure.yaml` (at the root of the project)
 
 </div>
 
 <div class="tip" data-title="Tips">
 
-> - If you are doing this workshop as part of an instructor-led lab, please use the Azure credentials provided by your instructor.
-> - A terminal should also be opened on the bottom panel of your Github Codespace. If you cannot see it, please open a new one using the burger menu on the top left, then `View`, then `Terminal`.
+> - If you are doing this workshop as part of an instructor-led lab, please use the Azure credentials provided by your instructor. Otherwise, use your usual credentials.
 
 </div>
 
@@ -134,7 +136,7 @@ azd up
 
 ### Validate the setup on Azure
 
-The provisioning step may take few minutes. Once it has finished, you should have a resource group ready with all the resources needed in this workshop.
+The provisioning step may take few minutes. Once it has finished, you should have a resource group ready with all the resources `rg-<name>-lab-no-ipa-<random-id>` needed in this workshop.
 
 Moreover, some of the applications (e.g. Azure Functions) should also be deployed and ready to be used.
 
