@@ -1440,6 +1440,12 @@ We will now see how to secure our API with the OAuth 2.0 standard
 
 In this section, we will learn how to configure EntraId to enable OAuth security using your identity provider, Azure Entra ID. We will create two App Registrations: one representing the API in Azure Entra ID and another representing the API caller.
 
+<div class="info" data-title="Note">
+
+> An app registration in Azure Active Directory (Azure AD) is a process that allows you to integrate your application with Azure AD to enable authentication and authorization. By registering an application, you create an identity for it, which Azure AD can use to authenticate users and grant access to resources.
+
+</div>
+
 First the App Registrations for the API.
 
 - Navigate to the directory hosting the relevant Azure Entra ID.
