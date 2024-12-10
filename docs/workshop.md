@@ -1400,15 +1400,9 @@ We will now test our API with the subscription key.
 
 We will now see how to secure our API with the OAuth 2.0 standard
 
-<div class="warning" data-title="👨‍🎓 Warning">
-
-> If you are in an instructor-led session, you can skip this section.
-
-</div>
-
 <details>
 
-<summary>OAuth Configuration on Entra ID</summary>
+<summary>OAuth Configuration on Entra ID (👨‍🎓 skip if instructor-led session)</summary>
 
 In this section, we will learn how to configure EntraId to enable OAuth security using your identity provider, Azure Entra ID. We will create two App Registrations: one representing the API in Azure Entra ID and another representing the API caller.
 
