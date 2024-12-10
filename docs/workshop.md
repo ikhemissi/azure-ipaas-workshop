@@ -268,7 +268,7 @@ Azure Logic Apps offers different components which can be used to define the ste
 
 > - **Operations** : `Triggers` and `Actions` are the main building blocks of a Logic App. A trigger is the event that starts the workflow and an action is a step in this workflow.
 > - A **trigger** is the first operation in any workflow that specifies the criteria to meet before running any subsequent **action** in that workflow. In this lab, we want to **trigger an event when a new file is uploaded in a storage account**.
-> - **Actions** is the building block actually responsible for doing the work in the flow : They are used to connect to Azure Services, 3rd party solutions, control the flow or manipulate data thanks to **connectors**.
+> - **Actions** are the building blocks actually responsible for doing the work in the flow : They are used to connect to Azure Services, 3rd party solutions, control the flow or manipulate data thanks to **connectors**.
 > - **Connectors** : Connectors are used to connect to different first of third party services and applications. These connectors abstract the complexities of interacting with these services by defining their required and optional inputs as well as deserializing their outputs to dynamic objects usable in the rest of the flow steps.
 > - **Controls** : Switch, Loop, Condition, Scope are used to control the flow of the steps composing the actual logic of the workflow.
 
