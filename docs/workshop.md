@@ -1532,7 +1532,8 @@ In this final part of the lab, we will learn how to apply APIM policies to dynam
 
 ### Rate Limiting
 
-To begin, we will set a limit for the Basic user to ensure they cannot call our API more than 5 times per minute.
+To begin, let's simulate a **free tier usage** that should be limited to a few calls per minute to leave compute for the paying users of our API.
+We'll use the `Basic` Product for this free tier to ensure a control on the call `rate` of these users and limit up to 5 api calls per minute.
 
 - On the APIM screen, in the menu on the left, click on `Products`, then select the product `Basic` from the list and click on it.
 - Go to `Policies`. On the right, in the `Inbound processing` section, click on the `+ Add policy` access the policy catalog.
