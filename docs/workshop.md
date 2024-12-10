@@ -219,7 +219,7 @@ The Logic App needs to access the Event Grid service through the Storage Account
 
 > - Navigate to the Storage Account `stdatalabnoipa[randomid]`.
 > - In the left-hand menu, click on `Access Control (IAM)`.
-> - From the top-menu bar, click on `Role Assignment` and check that Logic App `loa-proc-lab-no-ipa-[randomId]` system managed identity has the **EventGrid Contributor** role.
+> - From the top-menu bar, click on `Role Assignment` and check that Logic App `loa-proc-lab-no-ipa-[randomid]` system managed identity has the **EventGrid Contributor** role.
 
 You should see the following RBAC configuration in your Storage Account :
 
@@ -248,7 +248,7 @@ Since we want to use Managed Identities to secure the connection between our Azu
 
 > - Navigate to the Storage Account `stdatalabnoipa[randomid]`.
 > - In the left-hand menu, click on `Access Control (IAM)`.
-> - From the top-menu bar, click on `Role Assignment` and check that Logic App `loa-proc-lab-no-ipa-[randomId]` has the **Storage Blob Data Reader** role.
+> - From the top-menu bar, click on `Role Assignment` and check that Logic App `loa-proc-lab-no-ipa-[randomid]` has the **Storage Blob Data Reader** role.
 
 You should see the following RBAC configuration in your Storage Account :
 
@@ -274,7 +274,7 @@ Azure Logic Apps offers different components which can be used to define the ste
 
 </div>
 
-Next step is to actually trigger the Logic App `loa-proc-lab-no-ipa-[randomId]` based on the event raised by your Event Grid System Topic when a file is uploaded to the `inputfiles` container.
+Next step is to actually trigger the Logic App `loa-proc-lab-no-ipa-[randomid]` based on the event raised by your Event Grid System Topic when a file is uploaded to the `inputfiles` container.
 
 Since we want the Logic App to be triggered when an event is published in the Event Grid System Topic, we will be using the Event Grid Built-In connector available in Logic App.
 It comes with the `When a resource event occurs` action, that is triggered when an Azure Event Grid subscription receives the subscribed event.
@@ -288,8 +288,7 @@ It comes with the `When a resource event occurs` action, that is triggered when 
 
 <div class="task" data-title="Tasks">
 
-> - Check the Logic App `loa-proc-lab-no-ipa-[randomId]`, and confirm the configuration of the Event Grid trigger is ready for the workflow `wf_orders_from_sa_to_sb` from the Workflow designer.
-> -
+> - Check the Logic App `loa-proc-lab-no-ipa-[randomid]`, and confirm the configuration of the Event Grid trigger is ready for the workflow `wf_orders_from_sa_to_sb` from the Workflow designer.
 
 </div>
 
@@ -297,7 +296,7 @@ It comes with the `When a resource event occurs` action, that is triggered when 
 
 <summary> Toggle solution</summary>
 
-> - Navigate to the Logic App `loa-proc-lab-no-ipa-[randomId]`.
+> - Navigate to the Logic App `loa-proc-lab-no-ipa-[randomid]`.
 > - In the left-hand menu, click on `Workflows` from the `Workflows` section.
 > - Open the workflow `wf_orders_from_sa_to_sb`.
 > - In the left-hand menu, click on `Designer` from the `Developer` section.
@@ -323,7 +322,7 @@ In the meatime, let's have a look at the Event Grid subscription.
 
 <div class="task" data-title="Tasks">
 
-> - Check the an Event Grid subscription is set on the Storage Account `stdatalabnoipa[randomid]` for `loa-proc-lab-no-ipa-[randomId]`.
+> - Check an Event Grid subscription is set on the Storage Account `stdatalabnoipa[randomid]` for `loa-proc-lab-no-ipa-[randomid]`.
 
 </div>
 
@@ -366,7 +365,7 @@ After that `Parse JSON` step, we have a condition step, to check whether the eve
 <div class="task" data-title="Tasks">
 
 > - Check the configuration of the `Parse JSON` to ensure the JSON schema referenced in the step is matching the documentation [here](https://learn.microsoft.com/en-us/azure/event-grid/event-schema#event-schema)
-> - Check the configuration of the `Condition` action in the Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sa_to_sb`.
+> - Check the configuration of the `Condition` action in the Logic App `loa-proc-lab-no-ipa-[randomid]` workflow `wf_orders_from_sa_to_sb`.
 
 </div>
 
@@ -374,7 +373,7 @@ After that `Parse JSON` step, we have a condition step, to check whether the eve
 
 <summary> Toggle solution</summary>
 
-> - Navigate to the Logic App `loa-proc-lab-no-ipa-[randomId]`.
+> - Navigate to the Logic App `loa-proc-lab-no-ipa-[randomid]`.
 > - In the left-hand menu, click on `Workflows` from the `Workflows` section.
 > - Open the workflow `wf_orders_from_sa_to_sb`.
 > - In the left-hand menu, click on `Designer` from the `Developer` section.
@@ -399,7 +398,7 @@ To retrieve the content of the file that will be uploaded in the `inputfiles` co
 
 <div class="task" data-title="Tasks">
 
-> - Check the configuration of the `Read blob content` action in Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sa_to_sb`:
+> - Check the configuration of the `Read blob content` action in Logic App `loa-proc-lab-no-ipa-[randomid]` workflow `wf_orders_from_sa_to_sb`:
 
 </div>
 
@@ -407,7 +406,7 @@ To retrieve the content of the file that will be uploaded in the `inputfiles` co
 
 <summary> Toggle solution</summary>
 
-> - Navigate to the Logic App `loa-proc-lab-no-ipa-[randomId]`.
+> - Navigate to the Logic App `loa-proc-lab-no-ipa-[randomid]`.
 > - In the left-hand menu, click on `Workflows` from the `Workflows` section.
 > - Open the workflow `wf_orders_from_sa_to_sb`.
 > - In the left-hand menu, click on `Designer` from the `Developer` section.
@@ -445,7 +444,7 @@ The Logic App needs to access the Service Bus resource to publish the message (c
 
 <div class="task" data-title="Tasks">
 
-> - Confirm the correct RBAC configuration is applied in the Service Bus `sb-lab-no-ipa-[randomid]`:
+> - Confirm the Logic App `loa-proc-lab-no-ipa-[randomid]` has the **Service Bus Data Receiver** and **Service Bus Data Sender** roles on the Service Bus `sb-lab-no-ipa-[randomid]`:
 
 </div>
 
@@ -455,7 +454,7 @@ The Logic App needs to access the Service Bus resource to publish the message (c
 
 > - Navigate to the Service Bus `sb-lab-no-ipa-[randomid]`.
 > - In the left-hand menu, click on `Access Control (IAM)`.
-> - From the top-menu bar, click on `Role Assignment` and confirm that Logic App `loa-proc-lab-no-ipa-[randomId]` has the **Service Bus Data Receiver** and **Service Bus Data Sender** roles.
+> - From the top-menu bar, click on `Role Assignment` and confirm that Logic App `loa-proc-lab-no-ipa-[randomid]` has the **Service Bus Data Receiver** and **Service Bus Data Sender** roles.
 
 You should see the following RBAC configuration in your Service Bus Namespace :
 
@@ -470,7 +469,17 @@ To do that, we are using the `Service Bus` connector and `Send message to a queu
 
 <div class="task" data-title="Tasks">
 
-> - Check the configuration of the `Send message to a queue or topic` action in Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sa_to_sb`:
+> - Check the configuration of the `Send message to a queue or topic` action in Logic App `loa-proc-lab-no-ipa-[randomid]` workflow `wf_orders_from_sa_to_sb`
+> - It should reference `inputfiles` as the container name and extract the Blob Name from the previous action.
+
+</div>
+
+<div class="info" data-title="Note">
+
+> - To easily check the content of a function in a Logic App Action, you can check the **Code view** after clicking an `action`.
+> - It will provide with a plain text version of a `fx` function to ease the verifications.
+
+![Logic Apps Code View](assets/lab1/image-22.png)
 
 </div>
 
@@ -478,7 +487,7 @@ To do that, we are using the `Service Bus` connector and `Send message to a queu
 
 <summary> Toggle solution</summary>
 
-> - Navigate to the Logic App `loa-proc-lab-no-ipa-[randomId]`.
+> - Navigate to the Logic App `loa-proc-lab-no-ipa-[randomid]`.
 > - In the left-hand menu, click on `Workflows` from the `Workflows` section.
 > - Open the workflow `wf_orders_from_sa_to_sb`.
 > - In the left-hand menu, click on `Designer` from the `Developer` section.
@@ -506,7 +515,7 @@ As the Service Bus connection configuration is already done, we will focus on th
 
 <div class="task" data-title="Tasks">
 
-> - Create and configure the Service Bus trigger in Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sb_to_cdb`:
+> - Create and configure the Service Bus trigger in Logic App `loa-proc-lab-no-ipa-[randomid]` workflow `wf_orders_from_sb_to_cdb`:
 
 </div>
 
@@ -514,7 +523,7 @@ As the Service Bus connection configuration is already done, we will focus on th
 
 <summary> Toggle solution</summary>
 
-> - Navigate to the Logic App `loa-proc-lab-no-ipa-[randomId]`.
+> - Navigate to the Logic App `loa-proc-lab-no-ipa-[randomid]`.
 > - In the left-hand menu, click on `Workflows` from the `Workflows` section.
 > - Open the workflow `wf_orders_from_sb_to_cdb`.
 > - In the left-hand menu, click on `Designer` from the `Developer` section.
@@ -646,11 +655,11 @@ While there are many solutions to transform a JSON object in Logic Apps, we want
 
 The use of XSLT requires to manipulate XML data, so we'll need to first transform the Json to an XML format, to apply the XSLT transformation, and back to a Json formatted data for the target system.
 
-We will use a `Compose` action with a function to transform the JSON message into an XML format.
+We will use a `Compose` action to transform the JSON message into an XML format.
 
 <div class="task" data-title="Tasks">
 
-> - Configure a `Compose` action with a function to transform JSON into XML in Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sb_to_cdb`:
+> - Configure a `Compose` action to transform JSON into XML in Logic App `loa-proc-lab-no-ipa-[randomid]` workflow `wf_orders_from_sb_to_cdb`:
 
 </div>
 
@@ -658,12 +667,12 @@ We will use a `Compose` action with a function to transform the JSON message int
 
 <summary> Toggle solution</summary>
 
-> - Navigate to the Logic App `loa-proc-lab-no-ipa-[randomId]`.
+> - Navigate to the Logic App `loa-proc-lab-no-ipa-[randomid]`.
 > - In the left-hand menu, click on `Workflows` from the `Workflows` section.
 > - Open the workflow `wf_orders_from_sb_to_cdb`.
 > - In the left-hand menu, click on `Designer` from the `Developer` section.
 > - Click on the `+` button, select `Add an action` and search for `Compose` from the list of actions (in the **Data Operations** connector).
-> - In the `Inputs` field of the Compose action, click on the `fx` icon and enter the following function: `xml(json(triggerBody()?['contentData']))`.
+> - In the `Inputs` field of the `Compose` action, click on the `fx` icon and enter the following function: `xml(json(triggerBody()?['contentData']))`.
 > - Rename the action `JSON to XML`. It not obvious, but you have to click on the title "Compose" to do so.
 > - Once everything is set, click on the `Save` button at the top left corner.
 
@@ -677,7 +686,7 @@ We will then use a `Transform XML` action to transform the XML message into the 
 
 <div class="task" data-title="Tasks">
 
-> - Configure a `Transform XML` action, with the `transformation_orders` XSLT Map in Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sb_to_cdb`:
+> - Configure a `Transform XML` action, with the `transformation_orders` XSLT Map in Logic App `loa-proc-lab-no-ipa-[randomid]` workflow `wf_orders_from_sb_to_cdb`:
 
 </div>
 
@@ -698,11 +707,11 @@ The Transform XML action should look like this :
 
 </details>
 
-We will now use a `Compose` action with a function to transform the XML transformed message back to a lighter JSON format before sending it to the target.
+We will now use a `Compose` action to transform the XML message back to a lighter JSON format before sending it to the target.
 
 <div class="task" data-title="Tasks">
 
-> - Configure a `Compose` action with a function to transform JSON into XML in Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sb_to_cdb`:
+> - Configure a `Compose` action to transform XML back to a lighter JSON in Logic App `loa-proc-lab-no-ipa-[randomid]` workflow `wf_orders_from_sb_to_cdb`:
 
 </div>
 
@@ -732,7 +741,7 @@ We will use a `Compose` action to generate a unique identifier and append an `id
 
 <div class="task" data-title="Tasks">
 
-> - Configure a `Compose` action to generate a UUID and append the id property in Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sb_to_cdb`.
+> - Configure a `Compose` action to generate a UUID and append the id property in Logic App `loa-proc-lab-no-ipa-[randomid]` workflow `wf_orders_from_sb_to_cdb`.
 
 </div>
 
@@ -754,12 +763,12 @@ The Compose action should look like this :
 ### Retrieve Cosmos DB Primary Connection String
 
 To use the Cosmos DB connector in our Logic App workflow and write to the Cosmos DB container, you can use the Primary Connection String for authentication.
-This key grants the Logic App access to the Cosmos DB account and allows it to perform the required operations.
+This key grants the Logic App access to the Cosmos DB account and allows it to perform the required actions.
 We will now see how to retrieve this key for integration into our configuration.
 
 <div class="task" data-title="Tasks">
 
-> - Retrieve the Cosmos DB Primary Connection String from `cos-lab-no-ipa-[randomid]` Cosmos DB account:
+> - Retrieve the Cosmos DB Primary Connection String from `cos-lab-no-ipa-[randomid]` Cosmos DB account.
 
 </div>
 
@@ -781,12 +790,12 @@ You should see the following Credentials :
 
 ### Store data to Cosmos DB
 
-Now we can add the last step of the Logic App flow that will store the transformed message in the Cosmos DB database using the Create or update item operation.
+Now we can add the last step of the Logic App flow that will store the transformed message in the Cosmos DB database using the Create or update item `action`.
 First, we need to configure the connection to our CosmosDB account.
 
 <div class="task" data-title="Tasks">
 
-> - Configure the connection to CosmosDB for using the `Create or update item` connector in Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sb_to_cdb`.
+> - Configure the connection to CosmosDB for using the `Create or update item` connector in Logic App `loa-proc-lab-no-ipa-[randomid]` workflow `wf_orders_from_sb_to_cdb`.
 
 </div>
 
@@ -794,7 +803,7 @@ First, we need to configure the connection to our CosmosDB account.
 
 <summary> Toggle solution</summary>
 
-> - Navigate to the Logic App `loa-proc-lab-no-ipa-[randomId]`.
+> - Navigate to the Logic App `loa-proc-lab-no-ipa-[randomid]`.
 > - In the left-hand menu, click on `Workflows` from the `Workflows` section.
 > - Open the workflow `wf_orders_from_sb_to_cdb`.
 > - In the left-hand menu, click on `Designer` from the `Developer` section.
@@ -814,7 +823,7 @@ To do so, we need to configure the `Create or update item` connector.
 
 <div class="task" data-title="Tasks">
 
-> - Configure the `Create or update item` action to create a new document in CosmosDB in Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sb_to_cdb`.
+> - Configure the `Create or update item` action to create a new document in CosmosDB in Logic App `loa-proc-lab-no-ipa-[randomid]` workflow `wf_orders_from_sb_to_cdb`.
 
 </div>
 
@@ -932,18 +941,21 @@ A fully managed, distributed NoSQL, relational, and vector database service desi
 
 Asynchronous operations are **essential** in modern applications to ensure that tasks are processed without blocking the main execution flow, improving overall performance and user experience. A message broker like Azure Service Bus enhances resiliency by decoupling application components, allowing them to communicate reliably even if one component is temporarily unavailable. Service Bus supports operation retries, ensuring that messages are eventually processed even in the face of transient failures, thus maintaining the integrity and reliability of the system.
 
-The data processing function app (`func-proc-lab-[randomId]`) should already have 2 functions deployed `QueueOrders` and `ProcessOrders`like this
+The data processing function app (`func-proc-lab-[randomid]`) should already have 2 functions deployed `QueueOrders` and `ProcessOrders`like this
 !["Functions deployed'](./assets/lab2/functions_deployed.png)
 
 <div class="task" data-title="Task">
 
-> - Update the `QueueOrders` function to queue messages in Service Bus for every new document in CosmosDb. You have **to edit the code locally** (not in Azure portal).
+> - Edit the code from your codespace environment (not in the Azure Portal)
+> - Open the `src/dataprocessing/src/functions/QueueOrders.js` file
+> - Update the `QueueOrders` function to queue messages in Service Bus for every new document in CosmosDb.
+> - Deploy the code change to the Azure Function `func-proc-lab-[randomid]`
 
 </div>
 
 <div class="tip" data-title="Tips">
 
-> - You can use the environment variables `SERVICEBUS_QUEUE`, and `SB_ORDERS__fullyQualifiedNamespace` to send messages to Service Bus using the managed identity of the Function App `func-proc-lab-[randomId]`. Both environment variables have already been set on the Function App when you have provisioned the resources at the beginning on the workshop.
+> - You can use the environment variables `SERVICEBUS_QUEUE`, and `SB_ORDERS__fullyQualifiedNamespace` to send messages to Service Bus using the managed identity of the Function App `func-proc-lab-[randomid]`. Both environment variables have already been set on the Function App when you have provisioned the resources at the beginning on the workshop.
 >
 > - You can leverage the [Service Bus output binding](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus-output?tabs=python-v2%2Cisolated-process%2Cnodejs-v4%2Cextensionv5&pivots=programming-language-javascript) to easily add order messages to Service Bus.
 
@@ -982,6 +994,9 @@ app.cosmosDB("QueueOrders", {
 
 Once you have updated the code, re-deploy the Function App code to get your updates running on Azure:
 
+> - From your `codespace` environment terminal : Ctrl+J to reopen if closed in the meantime
+> - Execute the following command :
+
 ```sh
 azd deploy dataprocessing
 ```
@@ -992,7 +1007,7 @@ Once you have deployed your updated Function App, you need to test your new chan
 
 <div class="task" data-title="Task">
 
-> - Please head to the Azure Portal, retest your logic app and make sure `QueueOrders` is queueing a message in Service Bus.
+> - From the Azure Portal, trigger your logic app once again and make sure `QueueOrders` is queueing a message in Service Bus.
 
 </div>
 
@@ -1005,7 +1020,7 @@ Once you have deployed your updated Function App, you need to test your new chan
 > - Click on the `inputfiles` container.
 > - From the top-menu bar, click on the `Upload` button, click on `Browse for files` and select the `sample_order.json` file from your Storage Explorer.
 > - Click on the `Upload` button below.
-> - Navigate to your data processing Function App (`func-proc-lab-[randomId]`).
+> - Navigate to your data processing Function App (`func-proc-lab-[randomid]`).
 > - Click on the function `ProcessOrders`.
 > - Check the `Invocations` tab.
 
@@ -1021,13 +1036,16 @@ In this step, we will update the `ProcessOrders` function to process orders whil
 
 <div class="task" data-title="Task">
 
+> - Edit the code from your codespace environment (not in the Azure Portal)
+> - Open the `src/dataprocessing/src/functions/ProcessOrders.js` file
 > - Update the `ProcessOrders` function to store processed orders retrieved from Service Bus in CosmosDB
+> - Deploy the code change to the Azure Function `func-proc-lab-[randomid]`
 
 </div>
 
 <div class="tip" data-title="Tips">
 
-> - You can use the environment variables `COSMOS_DB_DATABASE_NAME`, `COSMOS_DB_PROCESSED_CONTAINER_NAME`, and `COSMOS_DB__accountEndpoint` to send messages to Service Bus using the managed identity of the Function App `func-proc-lab-[randomId]`. These environment variables have already been set on the Function App when you provisioned resources on Azure at the beginning of the workshop.
+> - You can use the environment variables `COSMOS_DB_DATABASE_NAME`, `COSMOS_DB_PROCESSED_CONTAINER_NAME`, and `COSMOS_DB__accountEndpoint` to send messages to Service Bus using the managed identity of the Function App `func-proc-lab-[randomid]`. These environment variables have already been set on the Function App when you provisioned resources on Azure at the beginning of the workshop.
 >
 > - You can leverage the [CosmosDB output binding](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2-output?tabs=python-v2%2Cisolated-process%2Cnodejs-v4%2Cextensionv4&pivots=programming-language-javascript)
 
@@ -1072,6 +1090,9 @@ app.serviceBusQueue("ProcessOrders", {
 
 Once you have updated the code, re-deploy the Function App code to get your updates running on Azure:
 
+> - From your `codespace` environment terminal : Ctrl+J to reopen if closed in the meantime
+> - Execute the following command :
+
 ```sh
 azd deploy dataprocessing
 ```
@@ -1082,7 +1103,7 @@ Now that you have implemented the full order processing pipeline, you will need 
 
 <div class="task" data-title="Task">
 
-> - Please head to the Azure Portal, retest your logic app and make sure `ProcessOrders` is writing orders in the `processed` container in CosmosDB.
+> - From the Azure Portal, trigger your logic app once again and make sure `ProcessOrders` is writing orders in the `processed` container in CosmosDB.
 
 </div>
 
@@ -1105,11 +1126,14 @@ You should be able to see new entries with the test data which you have used wit
 
 In addition to reacting to events (e.g. message in Service Bus), Azure Functions also allows you to implement APIs and serve HTTP requests.
 
-In this last exercice of Lab2, you need to update the data fetching Function App (`func-ftch-lab-[randomId]`) to have the `FetchOrders` return the latest processed orders.
+In this last exercice of Lab2, you need to update the data fetching Function App (`func-ftch-lab-[randomid]`) to have the `FetchOrders` return the latest processed orders.
 
 <div class="task" data-title="Task">
 
+> - Edit the code from your codespace environment (not in the Azure Portal)
+> - Open the `src/datafetching/src/functions/FetchOrders.js` file
 > - Update the `FetchOrders` function to fetch the latest processed orders from CosmosDB.
+> - Deploy the code change to the Azure Function `func-ftch-lab-[randomid]`
 
 </div>
 
@@ -1159,6 +1183,9 @@ app.http("FetchOrders", {
 
 Once you have updated the code, re-deploy the Function App code to get your updates running on Azure:
 
+> - From your `codespace` environment terminal : Ctrl+J to reopen if closed in the meantime
+> - Execute the following command:
+
 ```sh
 azd deploy datafetching
 ```
@@ -1169,6 +1196,7 @@ Once you have deployed your updated Function App, you need to test your new chan
 
 <div class="task" data-title="Task">
 
+> - Open the postman extension in your codespace environment
 > - Call the HTTP endpoint of `FetchOrders` and make sure it returns the latest processed orders.
 
 </div>
@@ -1178,10 +1206,10 @@ Once you have deployed your updated Function App, you need to test your new chan
 <summary> Toggle solution</summary>
 
 > - Go to the Azure Portal
-> - Navigate to your fecth order Function App (`func-ftch-lab-[randomId]`).
-> - Clixk on the `FetchOrdes` function
+> - Navigate to your fecth order Function App (`func-ftch-lab-[randomid]`).
+> - Click on the `FetchOrders` function
 > - Click on `Get function URL`. A side panel should open.
-> - You can take any URL because for this lab, we disabled the key.
+> - As this is a Lab, you can take any of the 3 URLs that are proposed.
 
 ![Get function's URL](assets/lab2/getfunctionurl.png)
 
@@ -1203,7 +1231,7 @@ For this Lab, we will focus on the following scope :
 
 In this first step, we will learn how to expose an API on Azure APIM. We will publish the API to fetch orders deployed in Lab 2.
 
-1. Go the Azure APIM (name should start with `apim-lab-no-ipa`)
+1. Go the Azure APIM (name should start with `apim-lab-no-ipa-[randomid]`)
 2. On the left pane click on `APIs`
 3. Then, click on `+ Add API` and on the group `Create from Azure resource` select the tile `Function App`
 
