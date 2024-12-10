@@ -211,7 +211,7 @@ The Logic App needs to access the Event Grid service through the Storage Account
 
 <div class="task" data-title="Tasks">
 
-> - Check that the logic app has the `EventGrid Contributor` role for the Event Grid System Topic on the Storage Account `stdatalabnoipa[randomid]`.
+> - Check that the `loa-proc-lab-no-ipa-[randomid]` logic app has the `EventGrid Contributor` role for the Event Grid System Topic on the Storage Account `stdatalabnoipa[randomid]`.
 
 </div>
 
@@ -240,7 +240,7 @@ Since we want to use Managed Identities to secure the connection between our Azu
 
 <div class="task" data-title="Tasks">
 
-> - Check that correct RBAC configuration is applied in the Storage Account `stdatalabnoipa[randomid]`:
+> - Check that `loa-proc-lab-no-ipa-[randomid]` has the `Storage Blob Data Reader` RBAC applied on the Storage Account `stdatalabnoipa[randomid]`:
 
 </div>
 
@@ -260,13 +260,13 @@ You should see the following RBAC configuration in your Storage Account :
 
 ### Check the Logic App Workflows
 
-A **workflows** is a series of operations that define a task, business process, or workload. Each workflow always starts with a single trigger operation, after which you must add one or more action operations.
+A **workflow** is a series of operations that define a task, business process, or workload. Each workflow always starts with a single trigger operation, after which you must add one or more `actions`.
 
 #### Check the Event Grid trigger in Logic App
 
 <div class="info" data-title="Note">
 
-> A **trigger** is the first operation in any workflow that specifies the criteria to meet before running any subsequent operations in that workflow. In this lab, we want to **trigger an event when a new file is uploaded in a storage account**.
+> A **trigger** is the first operation in any workflow that specifies the criteria to meet before running any subsequent **action** in that workflow. In this lab, we want to **trigger an event when a new file is uploaded in a storage account**.
 
 </div>
 
@@ -290,7 +290,8 @@ It comes with the `When a resource event occurs` action, that is triggered when 
 
 <div class="task" data-title="Tasks">
 
-> - Check the Logic App `loa-proc-lab-no-ipa-[randomId]`, and confirm the configuration of the Event Grid trigger workflow `wf_orders_from_sa_to_sb`.
+> - Check the Logic App `loa-proc-lab-no-ipa-[randomId]`, and confirm the configuration of the Event Grid trigger is ready for the workflow `wf_orders_from_sa_to_sb` from the Workflow designer.
+> - 
 
 </div>
 
@@ -324,7 +325,7 @@ In the meatime, let's have a look at the Event Grid subscription.
 
 <div class="task" data-title="Tasks">
 
-> - Check the configuration of the Event Grid subscription in the Storage Account `stdatalabnoipa[randomid]`.
+> - Check the an Event Grid subscription is set on the Storage Account `stdatalabnoipa[randomid]` for `loa-proc-lab-no-ipa-[randomId]`.
 
 </div>
 
