@@ -1229,7 +1229,8 @@ For this Lab, we will focus on exposing and monetizing APIs using Azure API Mana
 
 ![Architecture diagram lab 3](./assets/lab3/architecture-schema-lab3.png)
 
-## About Azure API Management 
+## About Azure API Management
+
 Azure API Management (APIM) is a fully managed service that enables organizations to publish, secure, transform, maintain, and monitor APIs. It provides a comprehensive set of features to manage the entire API lifecycle, from creation to retirement.
 
 Key features of APIM include:
@@ -1246,7 +1247,6 @@ Developer Portal: A customizable portal where developers can discover, learn abo
 **Transformation and Enrichment**: Allows modification of requests and responses, such as format conversion and data enrichment.
 
 **Policy Management**: Enables the application of policies to APIs for security, caching, transformation, and more.
-
 
 <div class="info" data-title="Note">
 
@@ -1309,7 +1309,7 @@ In this first step, we will learn how to expose an API on Azure APIM. We will pu
 
 <div class="info" data-title="Note">
 
-**Products**: Products are a way to group one or more APIs and manage their access. Products can be configured with usage quotas, rate limits, and terms of use. Developers subscribe to products to gain access to the APIs contained within them. This allows for better control and monetization of API access.
+> **Products**: Products are a way to group one or more APIs and manage their access. Products can be configured with usage quotas, rate limits, and terms of use. Developers subscribe to products to gain access to the APIs contained within them. This allows for better control and monetization of API access.
 
 </div>
 
@@ -1334,7 +1334,6 @@ Now the API is published, we will learn how to create a **Product** we will use 
 4. On the next screen, click on `+ Add API`. In the right-hand menu that appears, select the API `Orders API` (the one created on the step 1) and then click `Select`.
 
    ![Product - Add an API](assets/lab3/part2-step4.jpg)
-
 
 <div class="task" data-title="Task">
 
