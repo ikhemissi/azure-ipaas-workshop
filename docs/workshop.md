@@ -1315,7 +1315,7 @@ Now the API is published, we will learn how to create a **Product** we will use 
 
 </details>
 
-## Securize your API (15 minutes)
+## Secure your API (15 minutes)
 
 Now that we have created our products, we will learn how to secure it. We will see two methods for this: Subscription Keys and the OAuth 2.0 standard.
 
@@ -1352,7 +1352,7 @@ Now that we have created two subscriptions, each corresponding to one of our pro
 
 </div>
 
-We will know test our API with the subscription key.
+We will now test our API with the subscription key.
 
 <div class="tip" data-title="Tips">
 
@@ -1398,17 +1398,17 @@ We will know test our API with the subscription key.
 
 ### OAuth 2.0
 
-We will now see how to securize our API with the OAuth 2.0 standard
+We will now see how to secure our API with the OAuth 2.0 standard
 
-<details>
-
-<summary>OAuth Configuration on Entra ID</summary>
-
-<div class="warning" data-title="Warning">
+<div class="warning" data-title="👨‍🎓 Warning">
 
 > If you are in an instructor-led session, you can skip this section.
 
 </div>
+
+<details>
+
+<summary>OAuth Configuration on Entra ID</summary>
 
 In this section, we will learn how to configure EntraId to enable OAuth security using your identity provider, Azure Entra ID. We will create two App Registrations: one representing the API in Azure Entra ID and another representing the API caller.
 
@@ -1483,7 +1483,7 @@ The Azure EntraId configuration is ready. Let's move on to the API Management se
 
 <div class="task" data-title="Task">
 
-> We will now see how to test our API securized by the OAuth 2.0 standard
+> We will now see how to test our API secure by the OAuth 2.0 standard
 >
 > Open Postman, on our previous request and click on `Send`.
 
@@ -1528,7 +1528,7 @@ On Postman, create a new request with the following information
 >
 > ![Request OAuth Success](assets/lab3/part3_2_ResultG.jpg)
 >
-> ✅ The Orders API is now secured using the OAuth 2.0 framework!
+> ✅ The Orders API is now secured using the OAuth 2.0 protocol !
 
 </details>
 
@@ -1570,7 +1570,7 @@ In the window that opens, fill in the fields with the following values and then 
 
 <div class="task" data-title="Task">
 
-> Go back to Postman and run about ten closely spaced tests.
+> From your postman client, call your API endpoint more than 5 times in less than a minute.
 
 </div>
 
@@ -1696,6 +1696,13 @@ In this lab, we learn how to use Azure APIM in a four-step process:
 
 Once you're done with this lab you can delete all the resources which you have created at the beginning using the following command:
 
+<div class="task" data-title="Tasks">
+
+> - From your `codespace` environment terminal : Ctrl+J to reopen if closed in the meantime
+> - Execute the following command :
+
 ```bash
 azd down
 ```
+
+</div>
