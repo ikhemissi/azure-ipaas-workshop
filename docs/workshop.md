@@ -12,6 +12,7 @@ authors: # Required. You can add as many authors as needed
   - Iheb Khemissi
   - Louis-Guillaume Morand
   - Julien Strebler
+  - Lucile Jeanneret
 
 contacts: # Required. Must match the number of authors
   - "guillaume.david@cellenza.com"
@@ -19,6 +20,7 @@ contacts: # Required. Must match the number of authors
   - "@ikhemissi"
   - "@lgmorand"
   - "@justrebl"
+  - "@ljeanner"
 duration_minutes: 180
 tags: azure, ipaas, functions, logic apps, apim, service bus, event grid, entra, cosmosdb, codespace, devcontainer
 navigation_levels: 3
@@ -809,7 +811,7 @@ First, we need to configure the connection to our CosmosDB account.
 > - In the left-hand menu, click on `Designer` from the `Developer` section.
 > - Click on the `+` button, select `Add an action` and search for `Cosmos DB`.
 > - Select `Create or update item`
-> - Set the connection with your Cosmos Db Instance: Select the the primary connection string that you retrieved in the previous step
+> - Set the connection with your Cosmos Db Instance: Select the primary connection string that you retrieved in the previous step
 
 The configuration should look like that:
 
@@ -1223,11 +1225,27 @@ In this lab, you learned how to process and fetch orders using Azure Functions a
 
 # Lab 3 : Exposing and monetizing APIs (45m)
 
-For this Lab, we will focus on the following scope :
+For this Lab, we will focus on exposing and monetizing APIs using Azure API Management (APIM). The steps will guides you through the process of creating and managing APIs, setting up products, and securing the APIs using subscription keys and OAuth 2.0. The goal is to demonstrate how to publish APIs, manage access, and define usage plans to monetize the APIs effectively within the following scope :
 
 ![Architecture diagram lab 3](./assets/lab3/architecture-schema-lab3.png)
 
+## About Azure API Management
+
+Azure API Management allows organizations to publish APIs hosted on Azure, on-premises, and in other clouds more securely, reliably, and at scale. Use API Management to drive API consumption among internal teams, partners, and developers while benefiting from business and log analytics available in the admin portal. This service helps provide the tools your organization needs for end-to-end API management—everything from provisioning user roles, creating usage plans and quotas, applying policies for transforming payloads, throttling, analytics, monitoring, and alerts.
+
+<div class="info" data-title="Note">
+
+> You can find a detailed article how APIM helps organizations expose their services as APIs, manage access, enforce policies, and gain insights into API usage, ultimately enabling them to monetize their APIs effectively. [following this link](https://learn.microsoft.com/en-us/azure/api-management/api-management-key-concepts) and [this one](https://learn.microsoft.com/en-us/azure/api-management/monetization-overview).
+
+</div>
+
 ## Expose an API (5 minutes)
+
+<div class="info" data-title="Note">
+
+> **APIs**: An API in APIM represents a set of operations that can be invoked by applications. Each API can have multiple operations, which correspond to the different endpoints exposed by the backend service. APIs can be versioned and configured with policies to control their behavior.
+
+</div>
 
 In this first step, we will learn how to expose an API on Azure APIM. We will publish the API to fetch orders deployed in Lab 2.
 
@@ -1274,6 +1292,12 @@ In this first step, we will learn how to expose an API on Azure APIM. We will pu
 
 ## Manage your API with Product (5 minutes)
 
+<div class="info" data-title="Note">
+
+> **Products**: Products are a way to group one or more APIs and manage their access. Products can be configured with usage quotas, rate limits, and terms of use. Developers subscribe to products to gain access to the APIs contained within them. This allows for better control and monetization of API access.
+
+</div>
+
 Now the API is published, we will learn how to create a **Product** we will use to manage access and define usage plans.
 
 1. On the APIM screen, in the menu on the left, click on `Products`, then click on `+ Add`.
@@ -1295,7 +1319,6 @@ Now the API is published, we will learn how to create a **Product** we will use 
 4. On the next screen, click on `+ Add API`. In the right-hand menu that appears, select the API `Orders API` (the one created on the step 1) and then click `Select`.
 
    ![Product - Add an API](assets/lab3/part2-step4.jpg)
-
 
 <div class="task" data-title="Task">
 
@@ -1402,6 +1425,12 @@ We will now see how to secure our API with the OAuth 2.0 standard
 
 In this section, we will learn how to configure EntraId to enable OAuth security using your identity provider, Azure Entra ID. We will create two App Registrations: one representing the API in Azure Entra ID and another representing the API caller.
 
+<div class="info" data-title="Note">
+
+> An app registration in Azure Entra ID is a process that allows you to integrate your application with Azure Entra ID to enable authentication and authorization. By registering an application, you create an identity for it, which Azure Entra ID can use to authenticate users and grant access to resources.
+
+</div>
+
 First the App Registrations for the API.
 
 - Navigate to the directory hosting the relevant Azure Entra ID.
@@ -1446,7 +1475,7 @@ Then, the App Registration for the caller of the API.
 
 </div>
 
-The Azure EntraId configuration is ready. Let's move on to the API Management section.
+The Azure Entra ID configuration is ready. Let's move on to the API Management section.
 
 </details>
 
@@ -1488,6 +1517,14 @@ The Azure EntraId configuration is ready. Let's move on to the API Management se
 > 🔴 The API Manager returns a 401 error. Indeed, it is now necessary to pass the token in order to be authorized to call the API.
 
 </details>
+
+For this step, you will need to know your Azure tenant Id, to do so : 
+
+- On the Azure Portal, navigate to the [setting pages](https://ms.portal.azure.com/#settings/directory) 
+- In the list, copy the  ID value from your **current** directory 
+![tenant](assets/lab3/tenant.png)
+- Keep this id as your tenant id 
+
 
 On Postman, create a new request with the following information
 
