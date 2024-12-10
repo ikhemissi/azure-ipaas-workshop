@@ -12,6 +12,7 @@ authors: # Required. You can add as many authors as needed
   - Iheb Khemissi
   - Louis-Guillaume Morand
   - Julien Strebler
+  - Lucile Jeanneret
 
 contacts: # Required. Must match the number of authors
   - "guillaume.david@cellenza.com"
@@ -19,6 +20,7 @@ contacts: # Required. Must match the number of authors
   - "@ikhemissi"
   - "@lgmorand"
   - "@justrebl"
+  - "@ljeanner"
 duration_minutes: 180
 tags: azure, ipaas, functions, logic apps, apim, service bus, event grid, entra, cosmosdb, codespace, devcontainer
 navigation_levels: 3
@@ -1223,7 +1225,7 @@ In this lab, you learned how to process and fetch orders using Azure Functions a
 
 # Lab 3 : Exposing and monetizing APIs (45m)
 
-For this Lab, we will focus on the following scope :
+For this Lab, we will focus on exposing and monetizing APIs using Azure API Management (APIM). The steps will guides you through the process of creating and managing APIs, setting up products, and securing the APIs using subscription keys and OAuth 2.0. The goal is to demonstrate how to publish APIs, manage access, and define usage plans to monetize the APIs effectively within the the following scope :
 
 ![Architecture diagram lab 3](./assets/lab3/architecture-schema-lab3.png)
 
