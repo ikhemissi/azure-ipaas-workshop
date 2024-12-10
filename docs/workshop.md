@@ -1235,7 +1235,7 @@ Azure API Management allows organizations to publish APIs hosted on Azure, on-pr
 
 <div class="info" data-title="Note">
 
-> You can find a detailed article how APIM helps organizations expose their services as APIs, manage access, enforce policies, and gain insights into API usage, ultimately enabling them to monetize their APIs effectively. [following this link](https://learn.microsoft.com/en-us/azure/api-management/api-management-key-concepts).
+> You can find a detailed article how APIM helps organizations expose their services as APIs, manage access, enforce policies, and gain insights into API usage, ultimately enabling them to monetize their APIs effectively. [following this link](https://learn.microsoft.com/en-us/azure/api-management/api-management-key-concepts) and [this one](https://learn.microsoft.com/en-us/azure/api-management/monetization-overview).
 
 </div>
 
@@ -1475,7 +1475,7 @@ Then, the App Registration for the caller of the API.
 
 </div>
 
-The Azure EntraId configuration is ready. Let's move on to the API Management section.
+The Azure Entra ID configuration is ready. Let's move on to the API Management section.
 
 </details>
 
