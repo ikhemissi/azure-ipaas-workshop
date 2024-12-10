@@ -1229,6 +1229,32 @@ For this Lab, we will focus on exposing and monetizing APIs using Azure API Mana
 
 ![Architecture diagram lab 3](./assets/lab3/architecture-schema-lab3.png)
 
+## About Azure API Management 
+Azure API Management (APIM) is a fully managed service that enables organizations to publish, secure, transform, maintain, and monitor APIs. It provides a comprehensive set of features to manage the entire API lifecycle, from creation to retirement.
+
+Key features of APIM include:
+
+**API Gateway**: Acts as a facade for backend services, providing a single entry point for API consumers.
+Developer Portal: A customizable portal where developers can discover, learn about, and consume APIs.
+
+**Security**: Supports various authentication and authorization mechanisms, including subscription keys, OAuth 2.0, and JWT validation.
+
+**Rate Limiting and Throttling**: Controls API usage to prevent abuse and ensure fair usage.
+
+**Analytics and Monitoring**: Provides insights into API usage, performance, and health.
+
+**Transformation and Enrichment**: Allows modification of requests and responses, such as format conversion and data enrichment.
+
+**Policy Management**: Enables the application of policies to APIs for security, caching, transformation, and more.
+
+
+<div class="info" data-title="Note">
+
+> You can find a detailed article how APIM helps organizations expose their services as APIs, manage access, enforce policies, and gain insights into API usage, ultimately enabling them to monetize their APIs effectively. [following this link](https://learn.microsoft.com/en-us/azure/api-management/api-management-key-concepts).
+
+</div>
+
+
 ## Expose an API (5 minutes)
 
 In this first step, we will learn how to expose an API on Azure APIM. We will publish the API to fetch orders deployed in Lab 2.
