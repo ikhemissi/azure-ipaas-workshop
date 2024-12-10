@@ -1296,14 +1296,10 @@ Now the API is published, we will learn how to create a **Product** we will use 
 
    ![Product - Add an API](assets/lab3/part2-step4.jpg)
 
-5. Select `Access control` from the menu on the left.
-6. Click on `+ Add group`, then in the right-hand menu, select `Developers` before clicking on `Select`.
-
-   ![Product - Add a Group](assets/lab3/part2-step6.jpg)
 
 <div class="task" data-title="Task">
 
-> Create a product named `Premium`, link it to the `Orders API`, and enable access control for the `Developers` group.
+> Create a product named `Premium` and link it to the `Orders API`.
 
 </div>
 
@@ -1311,7 +1307,7 @@ Now the API is published, we will learn how to create a **Product** we will use 
 
 <summary> Toggle solution</summary>
 
-> Repeat steps 1 to 6 to create another product named `Premium`
+> Repeat steps 1 to 4 to create another product named `Premium`
 
 </details>
 
