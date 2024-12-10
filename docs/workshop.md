@@ -811,7 +811,7 @@ First, we need to configure the connection to our CosmosDB account.
 > - In the left-hand menu, click on `Designer` from the `Developer` section.
 > - Click on the `+` button, select `Add an action` and search for `Cosmos DB`.
 > - Select `Create or update item`
-> - Set the connection with your Cosmos Db Instance: Select the the primary connection string that you retrieved in the previous step
+> - Set the connection with your Cosmos Db Instance: Select the primary connection string that you retrieved in the previous step
 
 The configuration should look like that:
 
