@@ -1254,6 +1254,13 @@ Developer Portal: A customizable portal where developers can discover, learn abo
 
 </div>
 
+## APIs and Products
+
+In Azure API Management, APIs and products are fundamental concepts that help organize and manage your API offerings.
+
+**APIs**: An API in APIM represents a set of operations that can be invoked by applications. Each API can have multiple operations, which correspond to the different endpoints exposed by the backend service. APIs can be versioned and configured with policies to control their behavior.
+
+**Products**: Products are a way to group one or more APIs and manage their access. Products can be configured with usage quotas, rate limits, and terms of use. Developers subscribe to products to gain access to the APIs contained within them. This allows for better control and monetization of API access.
 
 ## Expose an API (5 minutes)
 
