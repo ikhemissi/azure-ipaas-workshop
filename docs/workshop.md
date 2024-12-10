@@ -48,7 +48,6 @@ In this lab, you are going to reproduce a real-life scenario from an e-commerce 
 
 ![Architecture diagram](./assets/intro/architecture-schema.png)
 
-
 ## Azure iPaaS
 
 Azure iPaaS (Integration Platform as a Service) is a set of services which allow securely connecting apps, systems, and data in the cloud, on-premises, and at the edge.
@@ -59,7 +58,7 @@ Integration services can broadly be categorized into Orchestration, Messaging, A
 - **Azure Logic Apps**: A cloud service that helps you automate workflows and integrate apps, data, and services.
 - **Azure Functions**: A serverless compute service that allows you to run event-driven code without managing infrastructure.
 - **Azure Service Bus**: A messaging service that enables reliable communication between distributed applications and services.
-- **Azure Event Grid**:  A highly scalable, fully managed Pub Sub message distribution service that offers flexible message consumption patterns using the MQTT and HTTP protocols.
+- **Azure Event Grid**: A highly scalable, fully managed Pub Sub message distribution service that offers flexible message consumption patterns using the MQTT and HTTP protocols.
 - **Azure API Management**: A turnkey solution for publishing APIs to external and internal customers, quickly creating consistent and modern API gateways for existing back-end services hosted anywhere and analyzing and optimizing your APIs.
 
 This workshop will focus on these 5 services and how you can leverage them to create a fast, scalabale, secure, and resilient real-world application.
@@ -71,7 +70,6 @@ To get started quickly, we will be using the following services and tools:
 - **GitHub Codespace**: [GitHub Codespaces](https://docs.github.com/en/codespaces/overview) provides a cloud-based development environment that allows you to code, build, test, and collaborate from anywhere. It offers a fully configured development environment that can be accessed directly from your browser or through Visual Studio Code. With Codespaces, you can quickly spin up a development environment with all the necessary tools and dependencies, ensuring a consistent setup across your team.
 - **Azure Developer CLI** (azd): [azd](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/overview?tabs=linux) is a command-line interface designed to simplify the deployment and management of applications on Azure. It provides a unified experience for developers to build, deploy, and monitor their applications using a set of easy-to-use commands. With `azd`, you can streamline your workflow, automate repetitive tasks, and ensure consistent deployments across different environments.
 - **HTTP clients**: You will be required to send HTTP requests in many parts of the workshop. To simplify this process, we have already installed both [VSCode Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) and [Postman](https://www.postman.com/) as VS Code extensions in the Github codespace environment. Feel free to use your preferred HTTP client.
-
 
 ## Prepare your dev environment
 
@@ -88,13 +86,13 @@ To get started quickly, we will be using the following services and tools:
 1. Open the [lab repository](https://github.com/ikhemissi/azure-ipaas-workshop/)
 
 1. Fork the project by clicking on the `Fork` button on the top right. This step may take a couple of minutes. Once this is done, you will have your own copy of the project which you can use to save your changes.
-![Project forking](assets/intro/project-forking.png)
+   ![Project forking](assets/intro/project-forking.png)
 
 1. Click on `Code`, select the `Codespaces` tab, and click `Create codespace on main`.
-![Create codespace](assets/intro/codespace.png)
+   ![Create codespace](assets/intro/codespace.png)
 
 1. It should open a new tab in your browser with a full fledged IDE and a terminal that will be exclusively used for the lab. It can take a few minutes for the initial setup as Codespace starts a devcontainer on a dedicated virtual machine, with the initial setup, tools and configurations to successfully achieve the lab.
-![Codespace editor](assets/intro/codespace2.png)
+   ![Codespace editor](assets/intro/codespace2.png)
 
 </details>
 
@@ -227,7 +225,7 @@ You should see the following RBAC configuration in your Storage Account :
 
 ![IAM](assets/lab1/image-1.png)
 
-A Logic App triggered by Event Grid for blob uploads needs the `EventGrid Contributor` role on the storage account to subscribe to Event Grid blob-created events and to validate the webhook endpoint during setup. 
+A Logic App triggered by Event Grid for blob uploads needs the `EventGrid Contributor` role on the storage account to subscribe to Event Grid blob-created events and to validate the webhook endpoint during setup.
 
 </details>
 
@@ -260,23 +258,23 @@ You should see the following RBAC configuration in your Storage Account :
 
 ### Check the Logic App Workflows
 
-A **workflow** is a series of operations that define a task, business process, or workload. Each workflow always starts with a single trigger operation, after which you must add one or more `actions`.
+A **workflow** is a series of operations that define a task, business process, or workload. Each workflow always starts with a single **trigger**, after which you must add one or more **actions**.
 
 #### Check the Event Grid trigger in Logic App
 
 <div class="info" data-title="Note">
 
-> A **trigger** is the first operation in any workflow that specifies the criteria to meet before running any subsequent **action** in that workflow. In this lab, we want to **trigger an event when a new file is uploaded in a storage account**.
+Azure Logic Apps offers different components which can be used to define the steps of a flow as a chain of actions and controls. Here are the main ones :
+
+> - **Operations** : `Triggers` and `Actions` are the main building blocks of a Logic App. A trigger is the event that starts the workflow and an action is a step in this workflow.
+> - A **trigger** is the first operation in any workflow that specifies the criteria to meet before running any subsequent **action** in that workflow. In this lab, we want to **trigger an event when a new file is uploaded in a storage account**.
+> - **Actions** is the building block actually responsible for doing the work in the flow : They are used to connect to Azure Services, 3rd party solutions, control the flow or manipulate data thanks to **connectors**.
+> - **Connectors** : Connectors are used to connect to different first of third party services and applications. These connectors abstract the complexities of interacting with these services by defining their required and optional inputs as well as deserializing their outputs to dynamic objects usable in the rest of the flow steps.
+> - **Controls** : Switch, Loop, Condition, Scope are used to control the flow of the steps composing the actual logic of the workflow.
 
 </div>
 
 Next step is to actually trigger the Logic App `loa-proc-lab-no-ipa-[randomId]` based on the event raised by your Event Grid System Topic when a file is uploaded to the `inputfiles` container.
-
-Azure Logic Apps offers different components which can be used to define the steps of a flow as a chain of actions and controls. Here are the main ones :
-
-- **Operations** : Triggers and Actions are the main building blocks of a Logic App. A trigger is the event that starts the workflow and an action is a step in this workflow.
-- **Controls** : Switch, Loop, Condition, Scope are used to control the flow of the steps composing the actual logic of the workflow.
-- **Connectors** : Connectors are used to connect to different first of third party services and applications. These connectors abstract the complexities of interacting with these services by defining their required and optional inputs as well as deserializing their outputs to dynamic objects usable in the rest of the flow steps.
 
 Since we want the Logic App to be triggered when an event is published in the Event Grid System Topic, we will be using the Event Grid Built-In connector available in Logic App.
 It comes with the `When a resource event occurs` action, that is triggered when an Azure Event Grid subscription receives the subscribed event.
@@ -291,7 +289,7 @@ It comes with the `When a resource event occurs` action, that is triggered when 
 <div class="task" data-title="Tasks">
 
 > - Check the Logic App `loa-proc-lab-no-ipa-[randomId]`, and confirm the configuration of the Event Grid trigger is ready for the workflow `wf_orders_from_sa_to_sb` from the Workflow designer.
-> - 
+> -
 
 </div>
 
@@ -367,8 +365,8 @@ After that `Parse JSON` step, we have a condition step, to check whether the eve
 
 <div class="task" data-title="Tasks">
 
->- Check the configuration of the `Parse JSON` to ensure the JSON schema referenced in the step is matching the documentation [here](https://learn.microsoft.com/en-us/azure/event-grid/event-schema#event-schema)
->- Check the configuration of the `Condition` action in the Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sa_to_sb`.
+> - Check the configuration of the `Parse JSON` to ensure the JSON schema referenced in the step is matching the documentation [here](https://learn.microsoft.com/en-us/azure/event-grid/event-schema#event-schema)
+> - Check the configuration of the `Condition` action in the Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sa_to_sb`.
 
 </div>
 
@@ -560,9 +558,9 @@ This is the message in JSON format sent by the source system:
 ```json
 {
   "booking": {
-      "bookingId": "B12345678",
-      "bookingDate": "2022-02-08T12:00:00Z",
-      "passengers": [
+    "bookingId": "B12345678",
+    "bookingDate": "2022-02-08T12:00:00Z",
+    "passengers": [
       {
         "firstName": "John",
         "lastName": "Doe",
@@ -570,11 +568,11 @@ This is the message in JSON format sent by the source system:
         "dob": "1990-01-01",
         "gender": "M",
         "address": {
-        "street": "123 Main St",
-        "city": "Anytown",
-        "state": "CA",
-        "postalCode": "12345",
-        "country": "USA"
+          "street": "123 Main St",
+          "city": "Anytown",
+          "state": "CA",
+          "postalCode": "12345",
+          "country": "USA"
         },
         "phoneNumber": "+1 555-555-5555"
       },
@@ -585,16 +583,16 @@ This is the message in JSON format sent by the source system:
         "dob": "1992-03-15",
         "gender": "F",
         "address": {
-        "street": "456 Second St",
-        "city": "Anycity",
-        "state": "CA",
-        "postalCode": "67890",
-        "country": "USA"
+          "street": "456 Second St",
+          "city": "Anycity",
+          "state": "CA",
+          "postalCode": "67890",
+          "country": "USA"
         },
         "phoneNumber": "+1 555-555-5556"
       }
-     ],
-      "flight": {
+    ],
+    "flight": {
       "flightNumber": "UA123",
       "origin": "SFO",
       "destination": "JFK",
@@ -602,9 +600,9 @@ This is the message in JSON format sent by the source system:
       "arrivalDate": "2022-02-15T16:00:00Z",
       "airline": "United Airlines",
       "fareClass": "Economy",
-      "farePrice": 250.00
-      },
-      "payment": {
+      "farePrice": 250.0
+    },
+    "payment": {
       "cardType": "Visa",
       "cardNumber": "**** **** **** 1234",
       "expirationDate": "03/24",
@@ -615,8 +613,8 @@ This is the message in JSON format sent by the source system:
         "postalCode": "24680",
         "country": "USA"
       },
-      "totalPrice": 500.00
-      }
+      "totalPrice": 500.0
+    }
   }
 }
 ```
@@ -816,7 +814,7 @@ To do so, we need to configure the `Create or update item` connector.
 
 <div class="task" data-title="Tasks">
 
-> - Configure the `Create or update item` action to create a new document in CosmosDB in Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sb_to_cdb.
+> - Configure the `Create or update item` action to create a new document in CosmosDB in Logic App `loa-proc-lab-no-ipa-[randomId]` workflow `wf_orders_from_sb_to_cdb`.
 
 </div>
 
@@ -920,7 +918,7 @@ Azure Functions are event-driven: they must be triggered by an event coming from
 
 - **Binding** to a function is a way of connecting another resource to the function in a declarative way; bindings can be used to fetch data (input bindings), write data (output bindings), or both. Azure services such as Azure Storage blobs and queues, Service Bus queues, Event Hubs, and Cosmos DB provide data to the function as parameters.
 
-- **Triggers** are a specific kind of binding that causes a function to run. A trigger defines how a function is invoked, and a function must have exactly one trigger. Triggers have associated data, which is often provided as a parameter payload to the function. 
+- **Triggers** are a specific kind of binding that causes a function to run. A trigger defines how a function is invoked, and a function must have exactly one trigger. Triggers have associated data, which is often provided as a parameter payload to the function.
 
 ### Azure Service Bus
 
@@ -934,7 +932,7 @@ A fully managed, distributed NoSQL, relational, and vector database service desi
 
 Asynchronous operations are **essential** in modern applications to ensure that tasks are processed without blocking the main execution flow, improving overall performance and user experience. A message broker like Azure Service Bus enhances resiliency by decoupling application components, allowing them to communicate reliably even if one component is temporarily unavailable. Service Bus supports operation retries, ensuring that messages are eventually processed even in the face of transient failures, thus maintaining the integrity and reliability of the system.
 
-The data processing function app (`func-proc-lab-[randomId]`) should already have 2 functions deployed `QueueOrders` and `ProcessOrders`like this 
+The data processing function app (`func-proc-lab-[randomId]`) should already have 2 functions deployed `QueueOrders` and `ProcessOrders`like this
 !["Functions deployed'](./assets/lab2/functions_deployed.png)
 
 <div class="task" data-title="Task">
@@ -955,8 +953,8 @@ The data processing function app (`func-proc-lab-[randomId]`) should already hav
 
 <summary> Toggle solution</summary>
 
->- Navigate to the file `src/dataprocessing/src/functions/QueueOrders.js`.
->- Uncomment the lines 3 to 6, and line 13 by removing `//` from each line beginning.
+> - Navigate to the file `src/dataprocessing/src/functions/QueueOrders.js`.
+> - Uncomment the lines 3 to 6, and line 13 by removing `//` from each line beginning.
 
 Your code should look like:
 
@@ -1092,7 +1090,7 @@ Now that you have implemented the full order processing pipeline, you will need 
 
 <summary> Toggle solution</summary>
 
-> - Re-test your Logic App by adding a new file like we did in the previous step 
+> - Re-test your Logic App by adding a new file like we did in the previous step
 > - Navigate to the Cosmos DB account `cos-lab-no-ipa-[randomid]`.
 > - In the left-hand menu, click on `Data explorer` and click on `orders` to open the database
 > - Click on `processed` to open the container
@@ -1125,7 +1123,7 @@ In this last exercice of Lab2, you need to update the data fetching Function App
 
 <summary> Toggle solution</summary>
 
-> - Navigate to the file `src/datafetching/src/functions/FetchOrders.js`, 
+> - Navigate to the file `src/datafetching/src/functions/FetchOrders.js`,
 > - Uncomment the line 18 by removing `//` from the line beginning.
 
 Your code should look like:
@@ -1179,11 +1177,11 @@ Once you have deployed your updated Function App, you need to test your new chan
 
 <summary> Toggle solution</summary>
 
->- Go to the Azure Portal 
->- Navigate to your fecth order Function App (`func-ftch-lab-[randomId]`).
->- Clixk on the `FetchOrdes` function 
->- Click on `Get function URL`. A side panel should open. 
->- You can take any URL because for this lab, we disabled the key.
+> - Go to the Azure Portal
+> - Navigate to your fecth order Function App (`func-ftch-lab-[randomId]`).
+> - Clixk on the `FetchOrdes` function
+> - Click on `Get function URL`. A side panel should open.
+> - You can take any URL because for this lab, we disabled the key.
 
 ![Get function's URL](assets/lab2/getfunctionurl.png)
 
@@ -1392,36 +1390,37 @@ First the App Registrations for the API.
 - From the portal, search for the Azure Entra ID instance and click on the found resource.
 - In the left-hand menu, click on `App registrations`, then click on `+ New registration`
 
-    ![Add App Registration](assets/lab3/Add-AppRegistration.jpg)
+  ![Add App Registration](assets/lab3/Add-AppRegistration.jpg)
 
 - In the displayed window, fill in the fields with the following values, then click on `Register`:
-    - **Name**: `Orders-api`
-    - **Supported account types**: `Accounts in this organizational directory only (Single tenant)`
-    - **Redirect URL**: `Leave blank`
 
-    ![Register App Registration](assets/lab3/Register-AppRegistration.jpg)
+  - **Name**: `Orders-api`
+  - **Supported account types**: `Accounts in this organizational directory only (Single tenant)`
+  - **Redirect URL**: `Leave blank`
+
+  ![Register App Registration](assets/lab3/Register-AppRegistration.jpg)
 
 - If the App Registration window does not open automatically, click on the application you just created in the list.
 - From the Overview tile, locate the `Application (client) ID` value and note it down for later use.
 - In the left-hand menu, click on `Expose an API`, then at the top of the page, click on `Set` next to `Application ID URI`. Confirm with the default value.
 
-    ![Configure Scope](assets/lab3/Add-Audience.jpg)
+  ![Configure Scope](assets/lab3/Add-Audience.jpg)
 
 Then, the App Registration for the caller of the API.
 
 - In the left-hand menu, click on `App registrations`, then click on `+ New registration`
 - In the displayed window, fill in the fields with the following values, then click on `Register`:
-    - **Name**: `Caller App`
-    - **Supported account types**: `Accounts in this organizational directory only (Single tenant)`
-    - **Redirect URL**: `Leave blank`
+  - **Name**: `Caller App`
+  - **Supported account types**: `Accounts in this organizational directory only (Single tenant)`
+  - **Redirect URL**: `Leave blank`
 - From the Overview tile, locate the Application (client) ID value and note it down for later use.
 - In the left-hand menu, click on `Certificates & secrets` and Click on `+ New client secret`
 
-    ![Create Secret](assets/lab3/Add-Secret.jpg)
+  ![Create Secret](assets/lab3/Add-Secret.jpg)
 
 - In the displayed window, enter `caller-registration-key` as the description, then click on `Add`.
 
-    ![Configure Secret](assets/lab3/Configure-Secret.jpg)
+  ![Configure Secret](assets/lab3/Configure-Secret.jpg)
 
 <div class="info" data-title="Note">
 
