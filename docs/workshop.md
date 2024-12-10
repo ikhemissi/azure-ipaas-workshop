@@ -1560,7 +1560,7 @@ To begin, we will set a limit for the Basic user to ensure they cannot call our 
 In the window that opens, fill in the fields with the following values and then click `Save`:
 
 - **Number of calls**: `5`
-- **Renewal period**: `60`
+- **Renewal period**: `60` (seconds)
 - **Counter Key**: `API subscription`
 - **increment condition**: `Any request`
 
@@ -1641,7 +1641,8 @@ To conclude, we will simulate the monetization of an API using a custom policy t
 
 <div class="task" data-title="Task">
 
-> Go back to Postman and run a test.
+> From your Postman client and send another http request
+> Observe the result
 
 </div>
 
@@ -1661,7 +1662,8 @@ To conclude, we will simulate the monetization of an API using a custom policy t
 
 <div class="task" data-title="Task">
 
-> Go back to Postman and run about a test and observe the result.
+> Go back to Postman and send another http request
+> Observe the result
 
 </div>
 
@@ -1677,7 +1679,8 @@ To conclude, we will simulate the monetization of an API using a custom policy t
 
 <div class="tip" data-title="Tip">
 
-> You can run another test to use up all your credit and observe the result.
+> You can send another http request to use up all your credit
+> Observe the result
 
 </div>
 
