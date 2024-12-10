@@ -1231,22 +1231,7 @@ For this Lab, we will focus on exposing and monetizing APIs using Azure API Mana
 
 ## About Azure API Management
 
-Azure API Management (APIM) is a fully managed service that enables organizations to publish, secure, transform, maintain, and monitor APIs. It provides a comprehensive set of features to manage the entire API lifecycle, from creation to retirement.
-
-Key features of APIM include:
-
-**API Gateway**: Acts as a facade for backend services, providing a single entry point for API consumers.
-Developer Portal: A customizable portal where developers can discover, learn about, and consume APIs.
-
-**Security**: Supports various authentication and authorization mechanisms, including subscription keys, OAuth 2.0, and JWT validation.
-
-**Rate Limiting and Throttling**: Controls API usage to prevent abuse and ensure fair usage.
-
-**Analytics and Monitoring**: Provides insights into API usage, performance, and health.
-
-**Transformation and Enrichment**: Allows modification of requests and responses, such as format conversion and data enrichment.
-
-**Policy Management**: Enables the application of policies to APIs for security, caching, transformation, and more.
+Azure API Management allows organizations to publish APIs hosted on Azure, on-premises, and in other clouds more securely, reliably, and at scale. Use API Management to drive API consumption among internal teams, partners, and developers while benefiting from business and log analytics available in the admin portal. This service helps provide the tools your organization needs for end-to-end API management—everything from provisioning user roles, creating usage plans and quotas, applying policies for transforming payloads, throttling, analytics, monitoring, and alerts.
 
 <div class="info" data-title="Note">
 
@@ -1442,7 +1427,7 @@ In this section, we will learn how to configure EntraId to enable OAuth security
 
 <div class="info" data-title="Note">
 
-> An app registration in Azure Active Directory (Azure AD) is a process that allows you to integrate your application with Azure AD to enable authentication and authorization. By registering an application, you create an identity for it, which Azure AD can use to authenticate users and grant access to resources.
+> An app registration in Azure Entra ID is a process that allows you to integrate your application with Azure AD to enable authentication and authorization. By registering an application, you create an identity for it, which Azure AD can use to authenticate users and grant access to resources.
 
 </div>
 
