@@ -1225,7 +1225,7 @@ In this lab, you learned how to process and fetch orders using Azure Functions a
 
 # Lab 3 : Exposing and monetizing APIs (45m)
 
-For this Lab, we will focus on exposing and monetizing APIs using Azure API Management (APIM). The steps will guides you through the process of creating and managing APIs, setting up products, and securing the APIs using subscription keys and OAuth 2.0. The goal is to demonstrate how to publish APIs, manage access, and define usage plans to monetize the APIs effectively within the the following scope :
+For this Lab, we will focus on exposing and monetizing APIs using Azure API Management (APIM). The steps will guides you through the process of creating and managing APIs, setting up products, and securing the APIs using subscription keys and OAuth 2.0. The goal is to demonstrate how to publish APIs, manage access, and define usage plans to monetize the APIs effectively within the following scope :
 
 ![Architecture diagram lab 3](./assets/lab3/architecture-schema-lab3.png)
 
@@ -1427,7 +1427,7 @@ In this section, we will learn how to configure EntraId to enable OAuth security
 
 <div class="info" data-title="Note">
 
-> An app registration in Azure Entra ID is a process that allows you to integrate your application with Azure AD to enable authentication and authorization. By registering an application, you create an identity for it, which Azure AD can use to authenticate users and grant access to resources.
+> An app registration in Azure Entra ID is a process that allows you to integrate your application with Azure Entra ID to enable authentication and authorization. By registering an application, you create an identity for it, which Azure Entra ID can use to authenticate users and grant access to resources.
 
 </div>
 
