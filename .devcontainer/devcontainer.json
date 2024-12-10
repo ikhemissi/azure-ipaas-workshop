@@ -28,7 +28,8 @@
                 "ms-vscode.js-debug",
                 "ms-vscode.vscode-node-azure-pack",
                 "humao.rest-client",
-                "Postman.postman-for-vscode"
+                "Postman.postman-for-vscode",
+                "mhutchie.git-graph"
             ]
         }
     },
