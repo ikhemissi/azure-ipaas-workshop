@@ -898,6 +898,10 @@ You should see your transformed message in the `toprocess` container:
 
 </details>
 
+## Summary Lab 1
+
+In this lab, you learned how to create low-code/no-code worfklows using Logic Apps, workflows which can be used to any type of action such as processing a file, adding fields, sending emails, connecting to a database. Logic Apps have 800+ connectors and possibilities are limitless. You also discover Evend grid is the perfect pub/sub service to be able to connect events from almost everything and have components being triggered by these events.
+
 ---
 
 # Lab 2 : Sync and async patterns with Azure Functions and Service Bus (45m)
