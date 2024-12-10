@@ -1533,6 +1533,14 @@ The Azure EntraId configuration is ready. Let's move on to the API Management se
 
 </details>
 
+For this step, you will need to know your Azure tenant Id, to do so : 
+
+- On the Azure Portal, navigate to the [setting pages](https://ms.portal.azure.com/#settings/directory) 
+- In the list, copy the  ID value from your **current** directory 
+![tenant](assets/lab3/tenant.png)
+- Keep this id as your tenant id 
+
+
 On Postman, create a new request with the following information
 
 - Method : POST
