@@ -1236,7 +1236,7 @@ Once you have deployed your updated Function App, you need to test your new chan
 > - Open the url in a browser or use an HTTP client to call it.
 > - Make sure that you can see a list of orders (the list will only contain 1 order at this stage).
 
-![Run FetchOrders function](assets/lab2/fetch-orders-get-url.png)
+![Run FetchOrders function](assets/lab2/fetch-orders-run-in-browser.png)
 
 </details>
 
