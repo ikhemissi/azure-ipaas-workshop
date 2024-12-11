@@ -400,7 +400,8 @@ To retrieve the content of the file that will be uploaded in the `inputfiles` co
 
 <div class="task" data-title="Tasks">
 
-> - Check the configuration of the `Read blob content` action in Logic App `loa-proc-lab-no-ipa-[randomid]` workflow `wf_orders_from_sa_to_sb`:
+> - Check the configuration of the `Read blob content` action in Logic App `loa-proc-lab-no-ipa-[randomid]` workflow `wf_orders_from_sa_to_sb`
+> - Make sure that the `Read blob content` action is reading the file which was uploaded to the `inputfiles` container
 
 </div>
 
@@ -450,6 +451,13 @@ The Logic App needs to access the Service Bus resource to publish the message (c
 
 </div>
 
+<div class="info" data-title="Note">
+
+> In this workshop it is required for the Logic App to have both **Service Bus Data Receiver** and **Service Bus Data Sender** roles instead of just one of them.
+> This is because the same Logic App has multiple workflows, with some of them publishing messages to Services, and some of them processing messages, hence requiring both roles.
+
+</div>
+
 <details>
 
 <summary> Toggle solution</summary>
@@ -467,12 +475,13 @@ You should see the following RBAC configuration in your Service Bus Namespace :
 ### Check the action to Publish the message to Service Bus
 
 Next step is to publish the message (i.e. content of the file) in the Service Bus topic `topic-flighbooking`.
-To do that, we are using the `Service Bus` connector and `Send message to a queue or topic` action.
+To do that, we are using the `Service Bus` connector and `Send message` action.
 
 <div class="task" data-title="Tasks">
 
-> - Check the configuration of the `Send message to a queue or topic` action in Logic App `loa-proc-lab-no-ipa-[randomid]` workflow `wf_orders_from_sa_to_sb`
-> - It should reference `inputfiles` as the container name and extract the Blob Name from the previous action.
+> - Check the configuration of the `Send message` action in Logic App `loa-proc-lab-no-ipa-[randomid]` workflow `wf_orders_from_sa_to_sb`
+> - It should reference the blob content retrieved in the previous action
+> - Make sure the message will be published to the `topic-orders` topic
 
 </div>
 
@@ -494,7 +503,8 @@ To do that, we are using the `Service Bus` connector and `Send message to a queu
 > - Open the workflow `wf_orders_from_sa_to_sb`.
 > - In the left-hand menu, click on `Designer` from the `Developer` section.
 > - Click on the action `Send message`.
-> - Make sure that the Container Name is set to `inputfiles` and that the Blob Name is set to `last(split(items('For_each')['subject'], '/'))`.
+> - Make sure the value of the field `Queue or topic name` is set to `topic-orders`.
+> - Make sure that the message content is set to `@body('Read_blob_content')?['content']` where `Read_blob_content` is the name of the previous action.
 
 You should see the following configuration in your action :
 
@@ -512,7 +522,8 @@ We will build a workflow that will be triggered when a new message is available 
 
 ### Configure the Service Bus trigger in Logic App
 
-In this step, we will configure the Logic App `Service Bus` connector and trigger `When messages are available in a topic`.
+In this step, we will focus on the second workflow of the Logic App `wf_orders_from_sb_to_cdb` and we will use the trigger `When messages are available in a topic` of the `Service Bus` connector to trigger the workflow.
+
 As the Service Bus connection configuration is already done, we will focus on the creation and configuration of the trigger itself.
 
 <div class="task" data-title="Tasks">
@@ -811,7 +822,7 @@ First, we need to configure the connection to our CosmosDB account.
 > - In the left-hand menu, click on `Designer` from the `Developer` section.
 > - Click on the `+` button, select `Add an action` and search for `Cosmos DB`.
 > - Select `Create or update item`
-> - Set the connection with your Cosmos Db Instance: Select the primary connection string that you retrieved in the previous step
+> - Set the connection with your Cosmos DB instance and use the primary connection string that you retrieved in the previous step
 
 The configuration should look like that:
 
