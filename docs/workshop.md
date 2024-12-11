@@ -917,7 +917,7 @@ In this lab, you learned how to create low-code/no-code worfklows using Logic Ap
 
 # Lab 2 : Sync and async patterns with Azure Functions and Service Bus (45m)
 
-In the previous lab, you have prepared orders using a Logic App and you have stored these orders to the `toprocess` container in CosmosDB.
+In the previous lab, you have prepared orders using a Logic App and you have stored these orders in the `toprocess` container in CosmosDB.
 
 In this lab, you will focus on processing and fetching these orders by implementing two workflows using Azure Functions (Flex Consumption) and Service Bus:
 
@@ -965,7 +965,7 @@ The data processing function app (`func-proc-lab-[randomid]`) should already hav
 
 > - Edit the code from your codespace environment (not in the Azure Portal)
 > - Open the `src/dataprocessing/src/functions/QueueOrders.js` file
-> - Update the `QueueOrders` function to queue messages in Service Bus for every new document in CosmosDb.
+> - Update the `QueueOrders` function to queue messages in Service Bus for every new document in Cosmos DB.
 > - Deploy the code change to the Azure Function `func-proc-lab-[randomid]`
 
 </div>
@@ -1036,13 +1036,16 @@ Once you have deployed your updated Function App, you need to test your new chan
 > - In the left-hand menu, click on `Storage browser` and select `Blob containers`.
 > - Click on the `inputfiles` container.
 > - From the top-menu bar, click on the `Upload` button, click on `Browse for files` and select the `sample_order.json` file from your Storage Explorer.
+> - You may need to select the option `Overwrite if files already exist` if you have previously updated a file with the same name.
 > - Click on the `Upload` button below.
 > - Navigate to your data processing Function App (`func-proc-lab-[randomid]`).
-> - Click on the function `ProcessOrders`.
+> - Click on the function `QueueOrders`.
 > - Check the `Invocations` tab.
 
 You should see a new recent invocation (this may take a while).
-// TO DO : Add screenshot of the invocation tab
+
+![Queue order invocation](./assets/lab2/queue-orders-invocation.png)
+
 Check the logs of the invocation to get more details.
 
 </details>
@@ -1226,9 +1229,14 @@ Once you have deployed your updated Function App, you need to test your new chan
 > - Navigate to your fecth order Function App (`func-ftch-lab-[randomid]`).
 > - Click on the `FetchOrders` function
 > - Click on `Get function URL`. A side panel should open.
-> - As this is a Lab, you can take any of the 3 URLs that are proposed.
+> - Copy the url in `default (Function key)`.
 
-![Get function's URL](assets/lab2/getfunctionurl.png)
+![Get FetchOrders function URL](assets/lab2/fetch-orders-get-url.png)
+
+> - Open the url in a browser or use an HTTP client to call it.
+> - Make sure that you can see a list of orders (the list will only contain 1 order at this stage).
+
+![Run FetchOrders function](assets/lab2/fetch-orders-get-url.png)
 
 </details>
 
