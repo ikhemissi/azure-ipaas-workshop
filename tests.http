@@ -1,0 +1,33 @@
+# FetchOrders
+
+## By calling the Function App directly
+
+GET https://{{$dotenv AZURE_DATA_FETCHING_FUNC_APP_NAME}}.azurewebsites.net/api/FetchOrders HTTP/1.1
+
+###
+
+## By calling APIM without subscription key
+
+
+GET https://{{$dotenv AZURE_APIM_NAME}}.azure-api.net/orders/FetchOrders HTTP/1.1
+
+###
+
+## By calling APIM using a subscription key
+
+
+GET https://{{$dotenv AZURE_APIM_NAME}}.azure-api.net/orders/FetchOrders HTTP/1.1
+Ocp-Apim-Subscription-Key: REPLACE_WITH_MY_SUBSCRIPTION_KEY
+
+
+###
+
+# Getting the Access Token
+
+POST https://login.microsoftonline.com/{{$dotenv AZURE_TENANT_ID}}/oauth2/v2.0/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id=
+&client_secret=
+&scope=
