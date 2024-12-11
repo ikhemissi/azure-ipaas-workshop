@@ -473,3 +473,7 @@ module keyVaultUserAssignment './keyvault-role-assign.bicep' = {
     principalType: principalType
   }
 }
+
+output AZURE_APIM_NAME string = apim.outputs.name
+output AZURE_DATA_FETCHING_FUNC_APP_NAME string = dataFetchingFunctionApp.outputs.name
+output AZURE_TENANT_ID string = tenant().tenantId
